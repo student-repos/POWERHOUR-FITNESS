@@ -10,9 +10,6 @@ import bookingRouter from "./routes/bookingRouter.js";
 import userRouter from "./routes/userRouter.js";
 import cors from "cors";
 
-
-
-
 const app = express();
 const { PORT } = process.env;
 app.use(cors());

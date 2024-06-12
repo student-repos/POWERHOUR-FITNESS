@@ -1,3 +1,9 @@
+:root {
+  --orange:#f48915;
+  --blue:#004f80;
+  }
+
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;

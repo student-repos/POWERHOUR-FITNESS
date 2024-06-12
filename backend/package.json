@@ -4,21 +4,22 @@
   "version": "1.0.0",
   "description": "### Users   - firstName: String  - lastName: String - age: Number - email: String  - password: String  - telephon: Number  - role: enum [\"member\", \"trainer\", \"admin\"]  - picture: String   - address: String - trainerType: enum [\"yoga\", \"pilates\", \"fitness\"]  - trainerDescription: String ## Users' end points: - POST/login  - POST/logout  - POST/signup",
   "main": "server.js",
-  "scripts": {
-    "dev": "node --watch --env-file=.env server.js",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
     "multer": "^1.4.5-lts.1",
     "resend": "^3.2.0"
-  }
+  },
+  "scripts": {
+    "dev": "node --watch --env-file=.env server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
