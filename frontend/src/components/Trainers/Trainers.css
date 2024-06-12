@@ -1,0 +1,25 @@
+.trainers {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .trainer-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .trainer-card {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    width: 25%;
+    height: 500px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .trainer-card h3 {
+    margin-top: 0;
+  }
+  

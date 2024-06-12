@@ -1,0 +1,34 @@
+.offers {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .offer-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .offer-card {
+    background-color: #ffcc00;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    width: 25%;
+    height: 400px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .offer-card h3 {
+    margin-top: 0;
+  }
+  
+  .register {
+    background-color: #ff00ff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
