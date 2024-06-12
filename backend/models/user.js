@@ -12,7 +12,7 @@ const userSchema = new Schema(
     role: { type: String, enum: ["member", "trainer", "admin"] },
     picture: { type: String },
     address: { type: String },
-    trainerType: { type: String, enum: ["yoga", "pilates", "fitness"] },
+    trainerType: { type: String, enum: ["yoga", "pilates", "Cardio"] },
     trainerDescription: { type: String }
   },
   { timestamps: true }
