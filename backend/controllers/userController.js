@@ -1,9 +1,14 @@
 import User from "../models/user.js";
 import asyncHandler from "../config/asyncHandler.js";
+import path from "path";
+import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Resend } from "resend";
 import VerificationToken from "../models/verificationToken.js";
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
 
 const { JWT_SECRET } = process.env;
 const { PORT } = process.env;
@@ -138,7 +143,7 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const getProtected = asyncHandler(async (req, res) => {
-  const  {userId}  = req.user;
+  const { userId } = req.user;
   // search for a user with the userId
   const user = await User.findById(userId);
   // send response (200) with the user info
@@ -224,13 +229,14 @@ const updateUserById = async (req, res) => {
       password,
       telephone,
       role,
-      picture,
       address,
       trainerType,
       trainerDescription,
     } = req.body;
+    console.log(req.file.filename);
     const updatedUser = await User.findByIdAndUpdate(
       id,
+
       {
         firstName,
         lastName,
@@ -239,7 +245,7 @@ const updateUserById = async (req, res) => {
         password,
         telephone,
         role,
-        picture,
+        picture: req.file.filename,
         address,
         trainerType,
         trainerDescription,
@@ -257,6 +263,22 @@ const updateUserById = async (req, res) => {
     res
       .status(500)
       .json({ error: "Error updating user", details: error.message });
+  }
+};
+
+const getPictureById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findOne({ _id: id });
+    const picturePath = path.join(__dirname, `../uploads/${user.picture}`);
+
+    console.log(picturePath)
+    console.log(user.picture);
+    res.sendFile(picturePath);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error fetching user", details: error.message });
   }
 };
 
@@ -278,6 +300,7 @@ const deleteUserById = async (req, res) => {
 export {
   signup,
   verifyToken,
+  getPictureById,
   login,
   getProtected,
   postNewUser,

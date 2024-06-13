@@ -15,9 +15,15 @@ const userSchema = new Schema(
     trainerType: { type: String, enum: ["yoga", "pilates", "Cardio"] },
     trainerDescription: { type: String }
   },
-  { timestamps: true }
+  { timestamps: true },
+  
 );
 
 const User = model("User", userSchema);
 
 export default User;
+
+
+userSchema.add({
+  picture: { type: String }
+});

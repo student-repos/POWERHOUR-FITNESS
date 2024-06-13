@@ -1,26 +1,41 @@
-import React from 'react';
-import './Trainers.css';
+import React from "react";
+import "./Trainers.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function Trainers() {
+const Trainers = () => {
+  const [trainers, setTrainers] = useState([]);
+  useEffect(() => {
+    const fetchTrainers = async () => {
+      try {
+        const response = await axios.get("http://localhost:7000/trainer");
+        console.log(response);
+        const { data } = response;
+        console.log(data);
+        setTrainers(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTrainers();
+  }, []);
   return (
     <section className="trainers" id="trainers">
       <h2>Your Trainers</h2>
+
+      {/*Trainers card*/}
       <div className="trainer-list">
-        <div className="trainer-card">
-          <h3>Marya Muller</h3>
-          <p>Experienced yoga master dedicated to enhancing flexibility, balance, and inner peace for everyone.</p>
-        </div>
-        <div className="trainer-card">
-          <h3>Jamse Hax</h3>
-          <p>Expert fitness trainer committed to boosting strength, endurance, and overall health for all.</p>
-        </div>
-        <div className="trainer-card">
-          <h3>Shagy Olustad</h3>
-          <p>Certified Pilates trainer focused on improving strength, flexibility, and overall wellness for everyone.</p>
-        </div>
+        {trainers.map((trainer, i) => (
+          <div className="trainer-card" key={i}>
+            <h3>{trainer.firstName}</h3>
+            <div><img width="200"  src={`http://localhost:7000/user/picture/${trainer._id}`}/></div>
+            <p>{trainer.trainerDescription}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
-}
+};
 
 export default Trainers;
