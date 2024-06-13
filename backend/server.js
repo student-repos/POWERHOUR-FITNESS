@@ -8,14 +8,15 @@ import eventRouter from "./routes/eventRouter.js";
 import contactRouter from "./routes/contactRouter.js";
 import bookingRouter from "./routes/bookingRouter.js";
 import userRouter from "./routes/userRouter.js";
+import trainerRouter from "./routes/trainerRouter.js";
 import cors from "cors";
+
 
 const app = express();
 const { PORT } = process.env;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 await connectDB();
 
 app.use("/user", userRouter);
@@ -25,6 +26,8 @@ app.use("/course", courseRouter);
 app.use("/event", eventRouter);
 app.use("/contact", contactRouter);
 app.use("/booking", bookingRouter);
+app.use("/trainer", trainerRouter);
+
 
 app.listen(PORT, () =>
   console.log(
