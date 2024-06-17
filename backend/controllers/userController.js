@@ -15,7 +15,7 @@ const { PORT } = process.env;
 
 const signup = asyncHandler(async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
 
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
@@ -32,6 +32,7 @@ const signup = asyncHandler(async (req, res) => {
     const newUser = await User.create({
       firstName,
       lastName,
+      role,
       email,
       password: hashedPassword,
     });
@@ -134,7 +135,7 @@ const login = asyncHandler(async (req, res) => {
     });
 
     // send a response with jwt and message "login successful"
-    res.status(200).json({ message: "Login successful.", accessToken });
+    res.status(200).json({ message: "Login successful.", accessToken, user });
   } else {
     // If login fails
     res.status(401);
@@ -233,7 +234,7 @@ const updateUserById = async (req, res) => {
       trainerType,
       trainerDescription,
     } = req.body;
-    console.log(req.file.filename);
+    // console.log(req.file.filename);
     const updatedUser = await User.findByIdAndUpdate(
       id,
 
@@ -246,6 +247,7 @@ const updateUserById = async (req, res) => {
         telephone,
         role,
         picture: req.file.filename,
+        //write a new function for the picture upload
         address,
         trainerType,
         trainerDescription,
@@ -272,8 +274,8 @@ const getPictureById = async (req, res) => {
     const user = await User.findOne({ _id: id });
     const picturePath = path.join(__dirname, `../uploads/${user.picture}`);
 
-    console.log(picturePath)
-    console.log(user.picture);
+    // console.log(picturePath)
+    // console.log(user.picture);
     res.sendFile(picturePath);
   } catch (error) {
     res
