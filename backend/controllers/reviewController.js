@@ -1,21 +1,26 @@
 import Review from "../models/review.js";
 
+
 const postNewReview = async (req, res) => {
   try {
-    const { courseId, userId, comment, rating, activity } = req.body;
+    const { picture, fullName, rating, message } = req.body;
 
     const newReview = new Review({
-      courseId,
-      userId,
-      comment,
+      picture,
+      fullName,
       rating,
-      activity
+      message,
     });
 
     const savedReview = await newReview.save();
     res.json(savedReview);
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while saving the review.', details: error.message });
+    res
+      .status(500)
+      .json({
+        error: "An error occurred while saving the review.",
+        details: error.message,
+      });
   }
 };
 
@@ -24,7 +29,12 @@ const getAllReviews = async (req, res) => {
     const reviews = await Review.find();
     res.json(reviews);
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while fetching the reviews.', details: error.message });
+    res
+      .status(500)
+      .json({
+        error: "An error occurred while fetching the reviews.",
+        details: error.message,
+      });
   }
 };
 
@@ -40,12 +50,17 @@ const updateReviewById = async (req, res) => {
     );
 
     if (!updatedReview) {
-      return res.status(404).json({ error: 'Review not found' });
+      return res.status(404).json({ error: "Review not found" });
     }
 
     res.json(updatedReview);
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while updating the review.', details: error.message });
+    res
+      .status(500)
+      .json({
+        error: "An error occurred while updating the review.",
+        details: error.message,
+      });
   }
 };
 
@@ -55,12 +70,17 @@ const deleteReviewById = async (req, res) => {
     const deletedReview = await Review.findByIdAndDelete(id);
 
     if (!deletedReview) {
-      return res.status(404).json({ error: 'Review not found' });
+      return res.status(404).json({ error: "Review not found" });
     }
 
     res.json(deletedReview);
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while deleting the review.', details: error.message });
+    res
+      .status(500)
+      .json({
+        error: "An error occurred while deleting the review.",
+        details: error.message,
+      });
   }
 };
 
