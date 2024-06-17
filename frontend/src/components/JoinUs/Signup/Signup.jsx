@@ -29,7 +29,7 @@ function SignUp() {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:8000/user/signup", formData);
+      const response = await axios.post("http://localhost:7500/user/signup", formData);
       alert(response.data.message);
     } catch (error) {
       console.error(error);
