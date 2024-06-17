@@ -1,14 +1,10 @@
 import User from "../models/user.js";
 import asyncHandler from "../config/asyncHandler.js";
-import path from "path";
-import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Resend } from "resend";
 import VerificationToken from "../models/verificationToken.js";
-
-const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
-const __dirname = path.dirname(__filename);
+import crypto from "crypto";
 
 const { JWT_SECRET } = process.env;
 const { PORT } = process.env;
@@ -32,9 +28,9 @@ const signup = asyncHandler(async (req, res) => {
     const newUser = await User.create({
       firstName,
       lastName,
-      role,
       email,
       password: hashedPassword,
+      role,
     });
 
     // Create a verification token
@@ -48,7 +44,7 @@ const signup = asyncHandler(async (req, res) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: ["abdulhassan.mohsini@dci-student.org"],
+      to: ["onahgodwin15@gmail.com"],
       subject: "Please verify your account",
       html: `<h1>Hello ${firstName}</h1>
       <p>Click on the following link to verify your account: 
@@ -93,61 +89,62 @@ const verifyToken = asyncHandler(async (req, res) => {
 });
 
 const login = asyncHandler(async (req, res) => {
-  // handle the req.body username and password
   const { email, password } = req.body;
-  console.log(req.body);
 
-  // check if the user document exists
   const user = await User.findOne({ email });
-  console.log(user);
 
   if (!user) {
-    res.status(401).json({ message: "User not found" });
-    return;
+    return res.status(401).json({ message: "User not found" });
   }
-  // Check if the user has verified their email address**********
+
   if (!user.verified) {
-    res.status(401).json({
-      message:
-        "You are not allowed to login before verifying your email address",
+    return res.status(401).json({
+      message: "You are not allowed to login before verifying your email address",
     });
-    return;
   }
-  // check/verify that the password provided is correct, by comparing it with the hashed one
+
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (isPasswordValid) {
-    // create jwt signature
     const accessToken = jwt.sign(
       {
         userId: user._id,
         role: user.role,
       },
       JWT_SECRET,
-      { expiresIn: "1d" } // Optional: Set token expiry as needed
+      { expiresIn: "1d" }
     );
 
-    // Set token as a cookie
     res.cookie("token", accessToken, {
-      httpOnly: true, // The cookie cannot be accessed by client-side JS
-      secure: process.env.NODE_ENV === "production", // On production, set cookies over HTTPS
-      maxAge: 24 * 60 * 60 * 1000, // cookie will be removed after 24 hours
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
-    // send a response with jwt and message "login successful"
-    res.status(200).json({ message: "Login successful.", accessToken, user });
+    let dashboardUrl;
+    switch (user.role) {
+      case "admin":
+        dashboardUrl = "/dashboard/admin";
+        break;
+      case "trainer":
+        dashboardUrl = "/dashboard/trainer";
+        break;
+      case "member":
+        dashboardUrl = "/dashboard/member";
+        break;
+      default:
+        dashboardUrl = "/login";
+    }
+
+    res.status(200).json({ message: "Login successful.", accessToken, user, dashboardUrl });
   } else {
-    // If login fails
-    res.status(401);
-    throw new Error("Login failed due to invalid credentials");
+    res.status(401).json({ message: "Login failed due to invalid credentials" });
   }
 });
 
 const getProtected = asyncHandler(async (req, res) => {
   const { userId } = req.user;
-  // search for a user with the userId
   const user = await User.findById(userId);
-  // send response (200) with the user info
   res.status(200).json({ data: user });
 });
 
@@ -187,9 +184,7 @@ const postNewUser = async (req, res) => {
     await newUser.save();
     res.json(newUser);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error saving user", details: error.message });
+    res.status(500).json({ error: "Error saving user", details: error.message });
   }
 };
 
@@ -198,9 +193,7 @@ const getAllUsers = async (req, res) => {
     const users = await User.find();
     res.json(users);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error fetching users", details: error.message });
+    res.status(500).json({ error: "Error fetching users", details: error.message });
   }
 };
 
@@ -213,9 +206,7 @@ const getUserById = async (req, res) => {
     }
     res.json(user);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error fetching user", details: error.message });
+    res.status(500).json({ error: "Error fetching user", details: error.message });
   }
 };
 
@@ -230,14 +221,13 @@ const updateUserById = async (req, res) => {
       password,
       telephone,
       role,
+      picture,
       address,
       trainerType,
       trainerDescription,
     } = req.body;
-    // console.log(req.file.filename);
     const updatedUser = await User.findByIdAndUpdate(
       id,
-
       {
         firstName,
         lastName,
@@ -246,8 +236,7 @@ const updateUserById = async (req, res) => {
         password,
         telephone,
         role,
-        picture: req.file.filename,
-        //write a new function for the picture upload
+        picture,
         address,
         trainerType,
         trainerDescription,
@@ -259,28 +248,9 @@ const updateUserById = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Send a response when the user is successfully updated
     res.json(updatedUser);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error updating user", details: error.message });
-  }
-};
-
-const getPictureById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await User.findOne({ _id: id });
-    const picturePath = path.join(__dirname, `../uploads/${user.picture}`);
-
-    // console.log(picturePath)
-    // console.log(user.picture);
-    res.sendFile(picturePath);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error fetching user", details: error.message });
+    res.status(500).json({ error: "Error updating user", details: error.message });
   }
 };
 
@@ -293,18 +263,71 @@ const deleteUserById = async (req, res) => {
     }
     res.json(deletedUser);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error deleting user", details: error.message });
+    res.status(500).json({ error: "Error deleting user", details: error.message });
   }
 };
+
+// export {
+//   signup,
+//   verifyToken,
+//   login,
+//   getProtected,
+//   postNewUser,
+//   getAllUsers,
+//   getUserById,
+//   updateUserById,
+//   deleteUserById,
+// };
+
+
+// Example of admin dashboard data endpoint
+const getAdminDashboardData = asyncHandler(async (req, res) => {
+  // Fetch relevant data for admin dashboard
+  const membersCount = await User.countDocuments({ role: 'member' });
+  const trainersCount = await User.countDocuments({ role: 'trainer' });
+  const classesCount = 50; // Example data, replace with actual data fetching
+
+  res.status(200).json({
+    membersCount,
+    trainersCount,
+    classesCount,
+  });
+});
+
+// Example of trainer dashboard data endpoint
+const getTrainerDashboardData = asyncHandler(async (req, res) => {
+  const userId = req.user.userId;
+  // Fetch relevant data for trainer dashboard
+  const assignedMembers = await User.find({ assignedTrainer: userId });
+  const classesToday = 5; // Example data, replace with actual data fetching
+
+  res.status(200).json({
+    assignedMembers,
+    classesToday,
+  });
+});
+
+// Example of member dashboard data endpoint
+const getMemberDashboardData = asyncHandler(async (req, res) => {
+  const userId = req.user.userId;
+  // Fetch relevant data for member dashboard
+  const enrolledPrograms = []; // Example data, replace with actual data fetching
+  const completedClasses = 15; // Example data, replace with actual data fetching
+
+  res.status(200).json({
+    enrolledPrograms,
+    completedClasses,
+  });
+});
 
 export {
   signup,
   verifyToken,
-  getPictureById,
   login,
   getProtected,
+  getAdminDashboardData,
+  getTrainerDashboardData,
+  getMemberDashboardData,
   postNewUser,
   getAllUsers,
   getUserById,
