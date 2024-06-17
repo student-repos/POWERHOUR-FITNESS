@@ -9,7 +9,7 @@ const Offers = () => {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const response = await axios.get("http://localhost:7500/offer");
+        const response = await axios.get("http://localhost:7000/offer");
         console.log(response);
         const { data } = response;
         console.log(data);
