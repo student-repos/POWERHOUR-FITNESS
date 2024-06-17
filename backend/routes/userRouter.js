@@ -3,13 +3,18 @@ import {
   signup,
   login,
   verifyToken,
-  // logout,
+
   getProtected,
+  getAdminDashboardData,
+  getTrainerDashboardData,
+  getMemberDashboardData,
   getPictureById,
+
   postNewUser,
   getAllUsers,
   getUserById,
   updateUserById,
+
   deleteUserById,
 } from "../controllers/userController.js";
 import { isAuth } from "../middlewares/isAuth.js";
@@ -34,7 +39,16 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.get("/verify/:token", verifyToken);
 router.get("/getprotected", isAuth, getProtected);
-// router.post("/logout", logout);
+
+
+// Dashboard data endpoints
+router.get("/dashboard/admin", isAuth, getAdminDashboardData);
+router.get("/dashboard/trainer", isAuth, getTrainerDashboardData);
+router.get("/dashboard/member", isAuth, getMemberDashboardData);
+
+
+
+
 router.post("/", postNewUser);
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
