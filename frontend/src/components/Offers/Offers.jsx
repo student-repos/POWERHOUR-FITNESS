@@ -1,9 +1,8 @@
-import React from 'react';
-import './Offers.css';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import "./Offers.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const Offers = () => {
   const [offers, setOffers] = useState([]);
   useEffect(() => {
@@ -21,14 +20,14 @@ const Offers = () => {
     fetchOffers();
   }, []);
   return (
-    <div className="offers-container" id="offers">
+    <div className="offers-container" id ="offers">
       <div className="programs-header">
         <span className="stroke-text">READY TO START</span>
         <span>YOUR JOURNEY</span>
         <span className="stroke-text">NOW WITH US</span>
       </div>
       {/*Offers card*/}
-      <div className="offers" >
+      <div className="offers">
         {offers.map((offer, i) => (
           <div className="offer" key={i}>
             <div className="deadline">
@@ -49,9 +48,9 @@ const Offers = () => {
             <div>
               <ol>
                 <li>
-                  Train for {offer.monthlyPrice}€ per month in the first two
-                  months and from the 3rd month onward for €24.99 per
-                  month(instead of €49.99)
+                  Train for <span className="monthly-price-1">€{offer.monthlyPrice} .00 </span>per month in the first <span className="monthly-price-1">two months </span>
+                  and from the 3rd month onward for <span className="monthly-price-1"> €{offer.cMonthlyPrice}</span>  per
+                  month(instead of <span className="monthly-price-1">€{offer.pMonthlyPrice}</span>)
                 </li>
                 <li>No fixed contract term, can be canceled monthly</li>
                 <li>No regestration fee</li>
@@ -63,8 +62,7 @@ const Offers = () => {
             <div>
               <span>See more benefits</span>
             </div>
-
-            <div className="offer-btn">  
+            <div className="offer-btn">
             <Link to="/signup"><button className="btn-1">Join now</button></Link>
             </div>
           </div>
