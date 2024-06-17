@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  NavLink,
+} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Programs from "./components/Programs/Programs";
@@ -15,6 +20,11 @@ import TrainerDashboard from "./components/RoleBasedDashboard/TrainerDashboard";
 import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+
+import Pilates from "./components/Programs/pilates/Pilates";
+import Yoga from "./components/Programs/yoga/Yoga";
+import Cardio from "./components/Programs/cardio/Cardio";
+
 import "./App.css";
 
 function App() {
@@ -65,6 +75,31 @@ function App() {
           />
         </Routes>
       </AuthProvider>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <Header />
+              <Hero />
+              <Programs />
+              <Trainers />
+              <Offers />
+              <Testimonials />
+              <Contact />
+              <Footer />
+            </div>
+          }
+        />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/programs">
+          <Route path="pilates" element={<Pilates />} />
+          <Route path="yoga" element={<Yoga />} />
+          <Route path="cardio" element={<Cardio />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }

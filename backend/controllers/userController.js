@@ -1,10 +1,15 @@
 import User from "../models/user.js";
 import asyncHandler from "../config/asyncHandler.js";
+import path from "path";
+import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Resend } from "resend";
 import VerificationToken from "../models/verificationToken.js";
 import crypto from "crypto";
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
 
 const { JWT_SECRET } = process.env;
 const { PORT } = process.env;
@@ -28,6 +33,7 @@ const signup = asyncHandler(async (req, res) => {
     const newUser = await User.create({
       firstName,
       lastName,
+      role,
       email,
       password: hashedPassword,
       role,
@@ -121,6 +127,7 @@ const login = asyncHandler(async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
+
     let dashboardUrl;
     switch (user.role) {
       case "admin":
@@ -137,6 +144,8 @@ const login = asyncHandler(async (req, res) => {
     }
 
     res.status(200).json({ message: "Login successful.", accessToken, user, dashboardUrl });
+
+    
   } else {
     res.status(401).json({ message: "Login failed due to invalid credentials" });
   }
@@ -144,6 +153,9 @@ const login = asyncHandler(async (req, res) => {
 
 const getProtected = asyncHandler(async (req, res) => {
   const { userId } = req.user;
+
+  // search for a user with the userId
+
   const user = await User.findById(userId);
   res.status(200).json({ data: user });
 });
@@ -221,13 +233,14 @@ const updateUserById = async (req, res) => {
       password,
       telephone,
       role,
-      picture,
       address,
       trainerType,
       trainerDescription,
     } = req.body;
+    // console.log(req.file.filename);
     const updatedUser = await User.findByIdAndUpdate(
       id,
+
       {
         firstName,
         lastName,
@@ -236,7 +249,8 @@ const updateUserById = async (req, res) => {
         password,
         telephone,
         role,
-        picture,
+        picture: req.file.filename,
+        //write a new function for the picture upload
         address,
         trainerType,
         trainerDescription,
@@ -251,6 +265,22 @@ const updateUserById = async (req, res) => {
     res.json(updatedUser);
   } catch (error) {
     res.status(500).json({ error: "Error updating user", details: error.message });
+  }
+};
+
+const getPictureById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findOne({ _id: id });
+    const picturePath = path.join(__dirname, `../uploads/${user.picture}`);
+
+    // console.log(picturePath)
+    // console.log(user.picture);
+    res.sendFile(picturePath);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error fetching user", details: error.message });
   }
 };
 
@@ -323,6 +353,7 @@ const getMemberDashboardData = asyncHandler(async (req, res) => {
 export {
   signup,
   verifyToken,
+  getPictureById,
   login,
   getProtected,
   getAdminDashboardData,
