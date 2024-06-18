@@ -57,7 +57,7 @@ const signup = asyncHandler(async (req, res) => {
       <a href="http://localhost:${PORT}/user/verify/${token}">http://localhost:${PORT}/user/verify/${token}</a>
       </p>`,
     });
-
+   
     // Send the response
     res.status(200).json({
       message: "Signup successful. Please check your email for verification.",
