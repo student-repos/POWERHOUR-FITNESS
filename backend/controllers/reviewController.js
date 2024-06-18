@@ -1,13 +1,12 @@
 import Review from "../models/review.js";
-
+import User from "../models/user.js";
 
 const postNewReview = async (req, res) => {
   try {
-    const { picture, fullName, rating, message } = req.body;
+    const { rating, message } = req.body;
+    const { userId } = req.params;
 
     const newReview = new Review({
-      picture, 
-      fullName,
       rating,
       message,
     });
@@ -15,12 +14,10 @@ const postNewReview = async (req, res) => {
     const savedReview = await newReview.save();
     res.json(savedReview);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while saving the review.",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "An error occurred while saving the review.",
+      details: error.message,
+    });
   }
 };
 
@@ -29,12 +26,10 @@ const getAllReviews = async (req, res) => {
     const reviews = await Review.find();
     res.json(reviews);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while fetching the reviews.",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "An error occurred while fetching the reviews.",
+      details: error.message,
+    });
   }
 };
 
@@ -55,12 +50,10 @@ const updateReviewById = async (req, res) => {
 
     res.json(updatedReview);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while updating the review.",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "An error occurred while updating the review.",
+      details: error.message,
+    });
   }
 };
 
@@ -75,12 +68,10 @@ const deleteReviewById = async (req, res) => {
 
     res.json(deletedReview);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while deleting the review.",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "An error occurred while deleting the review.",
+      details: error.message,
+    });
   }
 };
 
