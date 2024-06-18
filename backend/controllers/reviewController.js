@@ -6,9 +6,16 @@ const postNewReview = async (req, res) => {
     const { rating, message } = req.body;
     const { userId } = req.params;
 
+    // Check if the user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     const newReview = new Review({
       rating,
       message,
+      userId,
     });
 
     const savedReview = await newReview.save();
