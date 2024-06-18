@@ -3,7 +3,6 @@ import "./Offers.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 const Offers = () => {
   const [offers, setOffers] = useState([]);
   useEffect(() => {
@@ -27,7 +26,6 @@ const Offers = () => {
         <span>YOUR JOURNEY</span>
         <span className="stroke-text">NOW WITH US</span>
       </div>
-
       {/*Offers card*/}
       <div className="offers">
         {offers.map((offer, i) => (
@@ -46,9 +44,7 @@ const Offers = () => {
                 € {offer.monthlyPrice}.00 <br></br>MONTHLY
               </span>
             </div>
-
             <span>No fixed contract term</span>
-
             <div>
               <ol>
                 <li>
@@ -63,11 +59,10 @@ const Offers = () => {
                 <span>(in all participating studios)</span>
               </ol>
             </div>
-
             <div>
               <span>See more benefits</span>
             </div>
-            <div className="offer-btn">  
+            <div className="offer-btn">
             <Link to="/signup"><button className="btn-1">Join now</button></Link>
             </div>
           </div>
@@ -76,5 +71,4 @@ const Offers = () => {
     </div>
   );
 };
-
 export default Offers;

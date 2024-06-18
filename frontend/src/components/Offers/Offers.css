@@ -1,246 +1,208 @@
-.programs-header {
-    display: flex;
-    gap: 10rem;
-    font-weight: bold;
-    font-size: 2rem;
-    justify-content: center;
-    text-transform: uppercase;
-    font-style: italic;
-    padding-top: 8rem;
-    text-align: center;
-    flex-wrap: wrap;
+ .programs-header {
+  display: flex;
+  gap: 10rem;
+  font-weight: bold;
+  font-size: 2rem;
+  justify-content: center;
+  text-transform: uppercase;
+  font-style: italic;
+  padding-top: 8rem;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.offers-container {
+  margin-top: -4rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  position: relative;
+  border: solid 1px black;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.offers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 6rem;
+}
+.offer {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFCC00;
+  gap: 2rem;
+  width: 25rem;
+  padding: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0.7rem 0.7rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+.offer:hover {
+  transform: scale(1.1);
+}
+.deadline {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+.deadline-date {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--blue);
+}
+.activity-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+.offer-season {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.title-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.monthly-price {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.monthly-price-1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+.offer > :nth-child(3) {
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
+}
+.offer > :nth-child(4) {
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  line-height: 1.5rem;
+}
+.offer-btn {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+.btn-1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 12rem;
+  height: 2rem;
+  padding: 0.5rem 1.2rem;
+  background-color: var(--orange);
+  color: var(--blue);
+  font-weight: bold;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0.7rem 0.7rem rgba(0, 0, 0, 0.1);
+}
+.btn-1:hover {
+  transform: scale(1.1);
+}
+.offer > :nth-child(5) {
+  text-align: left;
+}
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+@media screen and (max-width: 1024px) {
+  .programs-header {
+    gap: 5rem;
+    font-size: 2.5rem;
   }
-  
-  .offers-container {
-    margin-top: -4rem;
-    padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    position: relative;
-    border: solid 1px black;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-  
   .offers {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 6rem;
-  }
-  
-  .offer {
-    display: flex;
-    flex-direction: column;
-    background-color: #FFCC00;
     gap: 2rem;
-    width: 25rem;
-    padding: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 0.7rem 0.7rem rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
   }
-  
+  .offer {
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .programs-header {
+    gap: 2rem;
+    font-size: 2rem;
+    padding-top: 4rem;
+  }
+  .offers {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .offer {
+    width: 90%;
+    margin: 0 auto;
+  }
   .offer:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
-  
-  .deadline {
-    font-size: 1rem;
-    font-weight: lighter;
+}
+@media screen and (max-width: 480px) {
+  .programs-header {
+    gap: 1rem;
+    font-size: 1.5rem;
+    padding-top: 2rem;
   }
-  
-  .deadline-date {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--blue);
+  .offer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
   }
-  
-  .activity-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--blue);
-    text-transform: uppercase;
-  }
-  
-  .offer-season {
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
   .title-price {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .monthly-price {
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .monthly-price-1 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--blue);
-    text-transform: uppercase;
-  }
-  
-  .offer > :nth-child(3) {
-    font-size: 1rem;
-    border-bottom: 1px solid black;
-    padding-bottom: 0.5rem;
-  }
-  
-  .offer > :nth-child(4) {
-    font-size: 1rem;
-    font-weight: bold;
-    color: black;
-    line-height: 1.5rem;
-  }
-  
-  .offer-btn {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+  }
+  .monthly-price {
+    font-size: 1.5rem;
+  }
+  .offer-season {
+    font-size: 1.5rem;
+  }
+  .deadline {
+    font-size: 0.9rem;
+  }
+  .deadline-date {
+    font-size: 1rem;
+  }
+  .activity-name {
+    font-size: 1rem;
+  }
+  .monthly-price-1 {
+    font-size: 1rem;
+  }
+  .offer-btn {
     width: 100%;
   }
-  
   .btn-1 {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    width: 12rem;
-    height: 2rem;
-    padding: 0.5rem 1.2rem;
-    background-color: var(--orange);
-    color: var(--blue);
-    font-weight: bold;
-    border: none;
-    border-radius: 0.3rem;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 0.7rem 0.7rem rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-size: 0.9rem;
   }
-  
-  .btn-1:hover {
-    transform: scale(1.1);
-  }
-  
-  .offer > :nth-child(5) {
-    text-align: left;
-  }
-  
-  .features {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .feature {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  @media screen and (max-width: 1024px) {
-    .programs-header {
-      gap: 5rem;
-      font-size: 2.5rem;
-    }
-  
-    .offers {
-      gap: 2rem;
-    }
-  
-    .offer {
-      width: 20rem;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .programs-header {
-      gap: 2rem;
-      font-size: 2rem;
-      padding-top: 4rem;
-    }
-  
-    .offers {
-      flex-direction: column;
-      gap: 2rem;
-    }
-  
-    .offer {
-      width: 90%;
-      margin: 0 auto;
-    }
-  
-    .offer:hover {
-      transform: scale(1.05);
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .programs-header {
-      gap: 1rem;
-      font-size: 1.5rem;
-      padding-top: 2rem;
-    }
-  
-    .offer {
-      width: 100%;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-  
-    .title-price {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .monthly-price {
-      font-size: 1.5rem;
-    }
-  
-    .offer-season {
-      font-size: 1.5rem;
-    }
-  
-    .deadline {
-      font-size: 0.9rem;
-    }
-  
-    .deadline-date {
-      font-size: 1rem;
-    }
-  
-    .activity-name {
-      font-size: 1rem;
-    }
-  
-    .monthly-price-1 {
-      font-size: 1rem;
-    }
-  
-    .offer-btn {
-      width: 100%;
-    }
-  
-    .btn-1 {
-      width: 100%;
-      font-size: 0.9rem;
-    }
-  }
-  
+}
