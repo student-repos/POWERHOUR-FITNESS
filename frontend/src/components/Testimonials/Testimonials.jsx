@@ -16,9 +16,10 @@ function Testimonials() {
       const response = await axios.get("http://localhost:7000/review");
       setReviews(response.data);
     };
-
+    
     fetchReviews();
   }, []);
+  console.log(reviews);
 
   const handleReviewClick = () => {
     navigate("/login");
@@ -69,7 +70,7 @@ function Testimonials() {
       {Array.isArray(reviews) && reviews.length > 0 && (
         <div className="review-display">
           <div className="img-container">
-            <img src="path/to/image.jpg" />
+            <img src={`http://localhost:7000/user/picture/${reviews[currentIndex]._id}`} alt="Profile Picture" />
           </div>
           <div className="review-details">
             <p className="review-name">{reviews[currentIndex].fullName}</p>
