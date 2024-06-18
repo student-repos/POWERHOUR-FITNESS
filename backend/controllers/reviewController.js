@@ -6,7 +6,7 @@ const postNewReview = async (req, res) => {
     const { picture, fullName, rating, message } = req.body;
 
     const newReview = new Review({
-      picture,
+      picture, 
       fullName,
       rating,
       message,
