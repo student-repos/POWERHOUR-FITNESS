@@ -70,7 +70,7 @@ function Testimonials() {
       {Array.isArray(reviews) && reviews.length > 0 && (
         <div className="review-display">
           <div className="img-container">
-            <img src={`http://localhost:7000/user/picture/${reviews[currentIndex]._id}`} alt="Profile Picture" />
+            <img src={`http://localhost:7500/user/picture/${reviews[currentIndex]._id}`} alt="Profile Picture" />
           </div>
           <div className="review-details">
             <p className="review-name">{reviews[currentIndex].fullName}</p>

@@ -50,8 +50,7 @@ const signup = asyncHandler(async (req, res) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: [newUser.email],
-      
+      to: [newUser.email], // Make the email dynamic
       subject: "Please verify your account",
       html: `<h1>Hello ${firstName}</h1>
       <p>Click on the following link to verify your account: 
