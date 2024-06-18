@@ -50,14 +50,15 @@ const signup = asyncHandler(async (req, res) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: ["onahgodwin15@gmail.com"],
+      to: [newUser.email],
+      
       subject: "Please verify your account",
       html: `<h1>Hello ${firstName}</h1>
       <p>Click on the following link to verify your account: 
       <a href="http://localhost:${PORT}/user/verify/${token}">http://localhost:${PORT}/user/verify/${token}</a>
       </p>`,
     });
-
+   
     // Send the response
     res.status(200).json({
       message: "Signup successful. Please check your email for verification.",
