@@ -1,11 +1,12 @@
-import { useState } from "react"
-import React from 'react'
+import React from "react";
 
-export const Cardio = (props) => {
-
-
+function Cardio() {
   return (
-    <h1>Cardio goes here</h1>
-  )
+    <div>
+      <h1>Cardio Program</h1>
+      <p>Welcome to the Cardio program. Engage in heart-pumping activities that improve cardiovascular health.</p>
+    </div>
+  );
 }
+
 export default Cardio;
