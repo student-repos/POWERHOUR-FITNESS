@@ -10,7 +10,7 @@ import {
   getMemberDashboardData,
   getPictureById,
 
-  postNewUser,
+  uploadPictureById,
   getAllUsers,
   getUserById,
   updateUserById,
@@ -49,11 +49,11 @@ router.get("/dashboard/member", isAuth, getMemberDashboardData);
 
 
 
-router.post("/", postNewUser);
+router.patch("/:id", upload.single("picture"), uploadPictureById);
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 router.get("/picture/:id", getPictureById);
-router.put("/:id", upload.single("picture"), updateUserById);
+router.put("/:id", updateUserById);
 router.delete("/:id", deleteUserById);
 
 export default router;
