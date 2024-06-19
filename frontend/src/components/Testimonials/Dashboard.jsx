@@ -9,7 +9,7 @@ function Dashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/api/reviews', { fullName, rating, message });
+    await axios.post('/api/reviews', { rating, message });
     // Handle post submission logic
   };
 

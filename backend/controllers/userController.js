@@ -165,40 +165,6 @@ const logout = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Logout successful" });
 });
 
-const postNewUser = async (req, res) => {
-  try {
-    const {
-      firstName,
-      lastName,
-      age,
-      email,
-      password,
-      telephone,
-      role,
-      picture,
-      address,
-      trainerType,
-      trainerDescription,
-    } = req.body;
-    const newUser = new User({
-      firstName,
-      lastName,
-      age,
-      email,
-      password,
-      telephone,
-      role,
-      picture,
-      address,
-      trainerType,
-      trainerDescription,
-    });
-    await newUser.save();
-    res.json(newUser);
-  } catch (error) {
-    res.status(500).json({ error: "Error saving user", details: error.message });
-  }
-};
 
 const getAllUsers = async (req, res) => {
   try {
@@ -221,6 +187,24 @@ const getUserById = async (req, res) => {
     res.status(500).json({ error: "Error fetching user", details: error.message });
   }
 };
+
+const uploadPictureById = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const { picture } = req.body;
+    const uploadPicture = await User.findByIdAndUpdate(id, {
+      picture: req.file.filename,
+    }, {new: true});
+
+    if (!uploadPicture) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(uploadPicture);
+  } catch (error) {
+    res.status(500).json({ error: "Error updating user", details: error.message });
+  }
+} 
 
 const updateUserById = async (req, res) => {
   try {
@@ -249,8 +233,6 @@ const updateUserById = async (req, res) => {
         password,
         telephone,
         role,
-        picture: req.file.filename,
-        //write a new function for the picture upload
         address,
         trainerType,
         trainerDescription,
@@ -361,7 +343,7 @@ export {
   getAdminDashboardData,
   getTrainerDashboardData,
   getMemberDashboardData,
-  postNewUser,
+  uploadPictureById,
   getAllUsers,
   getUserById,
   updateUserById,
