@@ -10,6 +10,7 @@ import bookingRouter from "./routes/bookingRouter.js";
 import userRouter from "./routes/userRouter.js";
 import trainerRouter from "./routes/trainerRouter.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 
 const app = express();
@@ -17,6 +18,7 @@ const { PORT } = process.env;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 await connectDB();
 
 app.use("/user", userRouter);

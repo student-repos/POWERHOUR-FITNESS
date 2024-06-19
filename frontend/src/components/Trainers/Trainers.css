@@ -1,25 +1,67 @@
 .trainers {
-    padding: 2rem;
-    text-align: center;
+  text-align: center;
+  padding: 10rem;
+}
+
+.trainer-list-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trainer-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.trainer-card {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  width: 25%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.trainer-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.trainer-card h3 {
+  margin-top: 0;
+}
+
+.arrow-icon {
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0 1rem;
+  color: #ff00ff;
+}
+
+.arrow-icon:hover {
+  color: #e600e6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .trainer-list-wrapper {
+      flex-direction: column;
   }
-  
+
   .trainer-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+      width: 100%;
   }
-  
+
   .trainer-card {
-    background-color: #f0f0f0;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 10px;
-    width: 25%;
-    height: 500px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 80%;
   }
-  
-  .trainer-card h3 {
-    margin-top: 0;
+
+  .arrow-icon {
+      font-size: 1.5rem;
   }
-  
+}

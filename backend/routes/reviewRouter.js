@@ -5,10 +5,11 @@ import {
   updateReviewById,
   deleteReviewById,
 } from "../controllers/reviewController.js";
+import { isAuth } from "../middlewares/isAuth.js";
 
 const router = Router();
 
-router.post("/", postNewReview);
+router.post("/", isAuth, postNewReview);
 router.get("/", getAllReviews);
 router.put("/:id", updateReviewById);
 router.delete("/:id", deleteReviewById);

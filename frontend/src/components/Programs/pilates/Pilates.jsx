@@ -1,14 +1,12 @@
-import { useState } from "react"
-import React from 'react'
+import React from "react";
 
-
-const Pilates = (props) => {
-const [ pilates, setPilates ] = useState("")
-
-
-
+function Pilates() {
   return (
-    <h1>Pilates goes here</h1>
-  )
+    <div>
+      <h1>Pilates Program</h1>
+      <p>Welcome to the Pilates program. Focus on core strength, flexibility, and overall body conditioning.</p>
+    </div>
+  );
 }
+
 export default Pilates;

@@ -1,13 +1,12 @@
-import { useState } from "react"
-import React from 'react'
+import React from "react";
 
-export const use = (props) => {
-const [ yoga, setYoga ] = useState("")
-
-
+function Yoga() {
   return (
-    <h1>yoga goes here</h1>
-  )
+    <div>
+      <h1>Yoga Program</h1>
+      <p>Welcome to the Yoga program. Here you will find various yoga exercises and routines to enhance your well-being.</p>
+    </div>
+  );
 }
 
-export default use;
+export default Yoga;
