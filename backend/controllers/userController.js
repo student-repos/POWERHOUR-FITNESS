@@ -271,7 +271,9 @@ const updateUserById = async (req, res) => {
 const getPictureById = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("id", id);
     const user = await User.findOne({ _id: id });
+    console.log(user);
     const picturePath = path.join(__dirname, `../uploads/${user.picture}`);
 
     // console.log(picturePath)
