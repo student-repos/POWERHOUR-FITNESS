@@ -4,10 +4,16 @@ import User from "../models/user.js";
 const postNewReview = async (req, res) => {
   try {
     const { rating, message } = req.body;
-    const { userId } = req.params;
+    const { userId } = req.user;
+    console.log(req.user); 
 
     // Check if the user exists
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).populate([
+      "firstName",
+      "lastName",
+      "picture",
+    ]);
+    console.log("User found:", user);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -30,7 +36,10 @@ const postNewReview = async (req, res) => {
 
 const getAllReviews = async (req, res) => {
   try {
-    const reviews = await Review.find();
+    const reviews = await Review.find().populate({
+      path: "userId",
+      select: ["firstName", "lastName", "picture"],});
+    console.log("reviews", reviews);
     res.json(reviews);
   } catch (error) {
     res.status(500).json({
@@ -39,6 +48,8 @@ const getAllReviews = async (req, res) => {
     });
   }
 };
+
+
 
 const updateReviewById = async (req, res) => {
   try {
