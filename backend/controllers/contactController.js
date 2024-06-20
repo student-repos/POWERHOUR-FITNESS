@@ -1,23 +1,31 @@
 import contactForm from "../models/contactForm.js";
+import {Resend} from "resend";
+import dotenv from "dotenv";
+dotenv.config();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const postNewContact = async (req, res) => {
   try {
     const { firstName, lastName, email, telephone, message } = req.body;
 
-    const newContact = new contactForm({
-      firstName,
-      lastName,
-      email,
-      telephone,
-      message,
+    // Send email using Resend
+    const emailResponse = await resend.emails.send({
+      from: "onboarding@resend.dev", // Use the correct sender email for testing
+      to: "abdulhassan.mohsini@dci-student.org", // Your email address
+      subject: "New Contact Form Submission",
+      html: `<h1>Customer Contact From PowerHour Fitness Website</h1>
+        <p><strong>First Name:</strong> ${firstName}</p>
+        <p><strong>Last Name:</strong> ${lastName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Telephone:</strong> ${telephone}</p>
+        <p><strong>Message:</strong> ${message}</p>`,
     });
 
-    const savedContact = await newContact.save();
-    res.json(savedContact);
+    console.log('Email sent:', emailResponse);
+    res.json({ message: "Email sent successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error saving contact", details: error.message });
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'Error sending email', details: error.message });
   }
 };
 
@@ -50,3 +58,4 @@ const getContactById = async (req, res) => {
 };
 
 export { postNewContact, getAllContacts, getContactById };
+
