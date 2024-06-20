@@ -1,7 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    telephone: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:7500/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Clear the form fields after successful submission
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          telephone: "",
+          message: "",
+        });
+        // Show a success message
+        alert("Your message was sent successfully.");
+      } else {
+        alert("Error sending message.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error sending message.");
+    }
+  };
+
   return (
     <section className="contact" id="about">
       <h2>Contact Us</h2>
@@ -19,14 +63,48 @@ function Contact() {
         <div className="contact-form-container">
           <h3>Get in Touch</h3>
           <p>You can reach us anytime</p>
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
-              <input type="text" placeholder="FirstName" />
-              <input type="text" placeholder="LastName" />
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+                aria-label="First Name"
+              />
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+                aria-label="Last Name"
+              />
             </div>
-            <input type="email" placeholder="Email" />
-            <input type="text" placeholder="Phone" />
-            <textarea placeholder="How can we help?" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              aria-label="Email"
+            />
+            <input
+              type="text"
+              name="telephone"
+              placeholder="Phone"
+              value={formData.telephone}
+              onChange={handleChange}
+              aria-label="Phone"
+            />
+            <textarea
+              name="message"
+              placeholder="How can we help?"
+              value={formData.message}
+              onChange={handleChange}
+              aria-label="Message"
+            />
             <button type="submit">Submit</button>
           </form>
         </div>
