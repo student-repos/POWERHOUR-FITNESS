@@ -1,12 +1,16 @@
 :root {
-  --orange:#f48915;
-  --blue:#004f80;
-  }
-
+  --orange: #f48915;
+  --blue: #004f80;
+  --light-grey: #f7f7f7;
+  --dark-grey: #333;
+  --white: #ffffff;
+}
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Lato", "roboto", sans-serif;
+  background-color: var(--light-grey);
+  background-color: #f7f7f7;
 }
 
 a {
@@ -14,6 +18,37 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  
 }
+
+.header-title {
+  font-family: "Oswald", sans-serif;
+}
+
+
+/* nav a {
+  font-family: "Lato", sans-serif;
+} */
+
+.footer-text {
+  font-family: "Merriweather", serif;
+}
+
+
+input, textarea {
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--dark-grey);
+  border-radius: 5px;
+}
+
+

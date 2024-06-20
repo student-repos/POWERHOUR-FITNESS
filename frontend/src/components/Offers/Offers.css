@@ -36,9 +36,9 @@
 .offer {
   display: flex;
   flex-direction: column;
-  background-color: #FFCC00;
+  background-color: #FFccff;
   gap: 1rem;
-  width: 23%;
+  width: 20%;
   padding: 1.5rem;
   font-weight: bold;
   cursor: pointer;
@@ -122,7 +122,7 @@
   width: 12rem;
   height: 2rem;
   padding: 0.5rem 1.2rem;
-  background-color: var(--orange);
+  /* background-color: var(--orange); */
   color: var(--blue);
   font-weight: bold;
   border: none;
@@ -157,8 +157,8 @@
 
 @media screen and (max-width: 1024px) {
   .programs-header {
-    gap: 5rem;
-    font-size: 2.5rem;
+    gap: 4rem;
+    font-size: 2rem;
   }
 
   .offers {
@@ -166,7 +166,7 @@
   }
 
   .offer {
-    width: 20rem;
+    width: 50%;
   }
 }
 
@@ -246,3 +246,12 @@
 }
 
 
+
+
+/* .stroke-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: violet;
+  text-align: center;
+  
+} */

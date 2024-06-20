@@ -1,80 +1,79 @@
 .hero-section {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-  
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-  }
-  
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: #fff;
-  }
-  
-  .hero-text {
-    margin-bottom: 2rem;
-    
-  }
-  
-  .hero-text h1 {
-    font-size: 3rem;
-    color: #ff00ff;
-  }
-  
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
 
-  .outline-text {
-    font-size: 4rem;
-    font-weight: normal;
-    -webkit-text-stroke: 1px white;
-    color: transparent;
-  }
-  
-  .bold-text {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #ff00ff;
-  }
-  
-  .hero-text p {
-    font-size: 1rem;
-    
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.hero-text {
   margin-bottom: 2rem;
-  line-height: 1.5;
-  }
   
-  .get-started {
-    background-color: #ff00ff;
-    color: #fff;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  color: #ff00ff;
+}
+
+
+.outline-text {
+  font-size: 4rem;
+  font-weight: normal;
+  -webkit-text-stroke: 1px white;
+  color: transparent;
+}
+
+.bold-text {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ff00ff;
+}
+
+.hero-text p {
+  font-size: 1rem;
   
-  .hero-stats {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    font-size: 1.2rem;
-    margin-top: 2rem;
-  }
-  
-  .hero-stats div {
-    margin-right: 2rem;
-  }
-  
+margin-bottom: 2rem;
+line-height: 1.5;
+}
+
+.get-started {
+  background-color: #ff00ff;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+.hero-stats div {
+  margin-right: 2rem;
+}

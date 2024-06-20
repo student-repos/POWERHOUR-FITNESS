@@ -20,12 +20,13 @@
   background-color: #f0f0f0;
   padding: 1rem;
   margin: 1rem;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 25%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   text-decoration: none;
   color: inherit;
   display: block;
+  border: 2px solid #ff00ff;
 }
 
 .trainer-card:hover {
@@ -47,6 +48,20 @@
   color: #e600e6;
 }
 
+
+@media (max-width: 1024px) {
+  .trainer-card {
+    width: calc(33.333% - 2rem);
+  }
+  .trainer-list-wrapper {
+    flex-direction: column;
+    align-items: center;
+}
+
+  .trainer-card {
+    width: 80%;
+  }
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .trainer-list-wrapper {
@@ -65,3 +80,14 @@
       font-size: 1.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .trainer-card {
+    width: 100%;
+  }
+
+  .arrow-icon {
+    font-size: 1.2rem;
+  }
+}
+

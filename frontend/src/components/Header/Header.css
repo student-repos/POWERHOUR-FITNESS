@@ -49,18 +49,25 @@
   text-decoration: none;
   color: #000;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .nav a:hover {
   color: #ff00ff;
 }
 
+.join-us:hover {
+  border: 2px solid black;
+}
 .join-us {
   background-color: #ff00ff;
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 5px;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  
 }
 
 .burger-menu {
@@ -81,7 +88,7 @@
     background-color: #ffccff;
     width: 100%;
     padding: 1rem;
-    border-top:1px solid #000;
+    /* border-top:1px solid #000; */
     ;
   }
 
