@@ -11,7 +11,7 @@ const postNewContact = async (req, res) => {
     // Send email using Resend
     const emailResponse = await resend.emails.send({
       from: "onboarding@resend.dev", // Use the correct sender email for testing
-      to: "abdulhassan.mohsini@dci-student.org", // Your email address
+      to: "powerhour2024@outlook.com", // Your email address
       subject: "New Contact Form Submission",
       html: `<h1>Customer Contact From PowerHour Fitness Website</h1>
         <p><strong>First Name:</strong> ${firstName}</p>
