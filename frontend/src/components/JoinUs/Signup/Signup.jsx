@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 import Logo from "../../../assets/logo.png";
 import "./Signup.css";
 import axios from "axios";
+
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -13,6 +15,8 @@ function SignUp() {
     repeatPassword: "",
     terms: false
   });
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -25,15 +29,24 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.repeatPassword) {
-      alert("Passwords do not match!");
+      enqueueSnackbar("Passwords do not match!", { variant: "error" });
       return;
     }
     try {
       const response = await axios.post("http://localhost:7500/user/signup", formData);
-      alert(response.data.message);
+      enqueueSnackbar(response.data.message, { variant: "success" });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        repeatPassword: "",
+        terms: false
+      });
+      navigate("/login"); 
     } catch (error) {
       console.error(error);
-      alert("Signup failed, please try again.");
+      enqueueSnackbar(error.response.data.message, { variant: "error" });
     }
   };
 
@@ -73,7 +86,7 @@ function SignUp() {
             <input type="password" name="repeatPassword" value={formData.repeatPassword} onChange={handleChange} />
           </label>
           <label className="terms">
-            <input type="checkbox" name="terms" checked={formData.terms} onChange={handleChange} />
+            <input type="checkbox" required  name="terms" checked={formData.terms} onChange={handleChange} />
             By using it, you agree to our Privacy Policy as well as our Terms and Conditions
           </label>
           <button type="submit" className="signup-button">

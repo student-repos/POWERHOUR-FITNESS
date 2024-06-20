@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSnackbar } from 'notistack';
 import './Contact.css';
 
 function Contact() {
@@ -9,6 +10,7 @@ function Contact() {
     telephone: "",
     message: "",
   });
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,14 +37,14 @@ function Contact() {
           telephone: "",
           message: "",
         });
-        // Show a success message
-        alert("Your message was sent successfully.");
+        // Show a success notification
+        enqueueSnackbar('Your message was sent successfully.', { variant: 'success' });
       } else {
-        alert("Error sending message.");
+        enqueueSnackbar('Error sending message.', { variant: 'error' });
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error sending message.");
+      enqueueSnackbar('Error sending message.', { variant: 'error' });
     }
   };
 
