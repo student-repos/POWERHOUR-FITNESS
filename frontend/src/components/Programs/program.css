@@ -1,8 +1,7 @@
 .trainer-info {
 
-
-
 }
+
 .trainer-row {
   display: flex;
   flex-direction: row;
@@ -10,14 +9,14 @@
   gap: 5rem;
 border: 1px solid red;}
 
-
 .cours-card{
-    border: 1px solid red;
-
+  border: 1px solid red;
 }
+
 img {
     
 }
+
 h3{
     text-align: center;
 }
