@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Programs.css";
-import yogaImage from "../../assets/yoga .jpeg";
+import yogaImage from "../../assets/yoga.jpeg";
 import pilatesImage from "../../assets/pilates.jpeg";
 import cardioImage from "../../assets/cardio.jpeg";
 
