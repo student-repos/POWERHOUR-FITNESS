@@ -25,58 +25,58 @@ import Pilates from "./components/Programs/pilates/Pilates.jsx";
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
-                <Header />
-                <Hero />
-                <Programs />
-                <Trainers />
-                <Offers />
-                <Testimonials />
-                <Contact />
-                <Footer />
-              </div>
-            }
-          />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/dashboard/admin"
-            element={
-              <ProtectedRoute role="admin">
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard/trainer"
-            element={
-              <ProtectedRoute role="trainer">
-                <TrainerDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard/member"
-            element={
-              <ProtectedRoute role="member">
-                <MemberDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/programs/yoga" element={<Yoga />} />
-          <Route path="/programs/yoga/yoga-courses" element={<YogaCourses />} />
-
-          <Route path="/programs/cardio" element={<Cardio />} />
-          <Route path="/programs/pilates" element={<Pilates />} />
-        </Routes>
-      </AuthProvider>
-    </Router>
+    <SnackbarProvider maxSnack={3}>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div>
+                  <Header />
+                  <Hero />
+                  <Programs />
+                  <Trainers />
+                  <Offers />
+                  <Testimonials />
+                  <Contact />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/dashboard/admin"
+              element={
+                <ProtectedRoute role="admin">
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/trainer"
+              element={
+                <ProtectedRoute role="trainer">
+                  <TrainerDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/member"
+              element={
+                <ProtectedRoute role="member">
+                  <MemberDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/programs/yoga" element={<Yoga />} />
+            <Route path="/programs/cardio" element={<Cardio />} />
+            <Route path="/programs/pilates" element={<Pilates />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </SnackbarProvider>
   );
 }
 
