@@ -39,6 +39,11 @@ const signup = asyncHandler(async (req, res) => {
       role,
     });
 
+    await newUser.save();
+
+  res.status(201).json({ message: "Signup successful. Please login." });
+
+
     // Create a verification token
     const token = crypto.randomUUID();
     const verificationToken = await VerificationToken.create({
@@ -50,7 +55,7 @@ const signup = asyncHandler(async (req, res) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: [newUser.email], // Make the email dynamic
+      to: "powerhour2024@outlook.com", // Make the email dynamic
       subject: "Please verify your account",
       html: `<h1>Hello ${firstName}</h1>
       <p>Click on the following link to verify your account: 
@@ -94,6 +99,12 @@ const verifyToken = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+
+
+
+
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -103,9 +114,13 @@ const login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "User not found" });
   }
 
+  if (user.deleted) {
+    return res.status(401).json({ message: "User has been deleted" });
+  }
+
   if (!user.verified) {
     return res.status(401).json({
-      message: "You are not allowed to login before verifying your email address",
+      message: "Please verify your email before logging in.",
     });
   }
 
@@ -117,16 +132,17 @@ const login = asyncHandler(async (req, res) => {
         userId: user._id,
         role: user.role,
       },
-      JWT_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
+
+    console.log('Generated Access Token:', accessToken);
 
     res.cookie("token", accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 24 * 60 * 60 * 1000,
     });
-
 
     let dashboardUrl;
     switch (user.role) {
@@ -145,11 +161,17 @@ const login = asyncHandler(async (req, res) => {
 
     res.status(200).json({ message: "Login successful.", accessToken, user, dashboardUrl });
 
-    
   } else {
     res.status(401).json({ message: "Login failed due to invalid credentials" });
   }
 });
+
+
+
+
+
+
+
 
 const getProtected = asyncHandler(async (req, res) => {
   const { userId } = req.user;
@@ -271,27 +293,22 @@ const getPictureById = async (req, res) => {
 const deleteUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedUser = await User.findByIdAndDelete(id);
-    if (!deletedUser) {
+    const user = await User.findById(id);
+    if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    res.json(deletedUser);
+
+    user.deleted = true;
+    await user.save();
+
+    res.json({ message: 'User marked as deleted', user });
   } catch (error) {
     res.status(500).json({ error: "Error deleting user", details: error.message });
   }
 };
 
-// export {
-//   signup,
-//   verifyToken,
-//   login,
-//   getProtected,
-//   postNewUser,
-//   getAllUsers,
-//   getUserById,
-//   updateUserById,
-//   deleteUserById,
-// };
+
+
 
 
 // Example of admin dashboard data endpoint

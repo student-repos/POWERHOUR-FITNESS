@@ -18,6 +18,7 @@ const userSchema = new Schema(
     address: { type: String },
     trainerType: { type: String, enum: ["yoga", "pilates", "Cardio"] },
     trainerDescription: { type: String },
+    deleted: { type: Boolean, default: false }, 
   },
   { timestamps: true }
 );
@@ -25,7 +26,3 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 export default User;
-
-userSchema.add({
-  picture: { type: String },
-});
