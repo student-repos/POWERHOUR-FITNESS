@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import '../../components/RoleBasedDashboard/MemberDashboard.css';
 import profileImage from '../../assets/profile.jpg';
 
@@ -13,11 +14,12 @@ const MemberDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get('http://localhost:7500/api/dashboard/member', {
+        const response = await axios.get('http://localhost:7500/user/dashboard/member', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -32,7 +34,7 @@ const MemberDashboard = () => {
 
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:7500/api/bookings', {
+        const response = await axios.get('http://localhost:7500/booking', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -62,7 +64,7 @@ const MemberDashboard = () => {
   const handleDeleteAccount = async () => {
     console.log('Delete button clicked');
     try {
-      const url = `http://localhost:7500/user/api/${user._id}`;
+      const url = `http://localhost:7500/user/${user._id}`;
       console.log('Deleting account with URL:', url);
       const response = await axios.delete(url, {
         headers: {
@@ -71,6 +73,7 @@ const MemberDashboard = () => {
       });
       console.log('Account deleted successfully', response.data);
       logout();
+      navigate('/'); 
     } catch (error) {
       console.error('Error deleting account', error.response ? error.response.data : error.message);
       setError(error.response ? error.response.data.error : 'Error deleting account');
