@@ -1,8 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Programs from "./components/Programs/Programs";
+import Program from "./components/Programs/Program";
+import Course from "./components/Programs/Course";
 import Trainers from "./components/Trainers/Trainers";
 import Offers from "./components/Offers/Offers";
 import Testimonials from "./components/Testimonials/Testimonials";
@@ -16,11 +23,6 @@ import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./App.css";
-
-import Yoga from "./components/Programs/yoga/Yoga.jsx";
-import YogaCourses from "./components/Programs/yoga/yoga-courses/YogaCourses.jsx";
-import Cardio from "./components/Programs/cardio/Cardio.jsx";
-import Pilates from "./components/Programs/pilates/Pilates.jsx";
 
 function App() {
   return (
@@ -68,11 +70,28 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/programs/yoga" element={<Yoga />} />
-          <Route path="/programs/yoga/yoga-courses" element={<YogaCourses />} />
+          <Route path="/programs">
+            <Route
+              path=":program/:course/:trainer/:id/*"
+              element={<Course />}
+            />
+            <Route
+              path=":program/*"
+              element={<Program />}
+            />
+            <Route
+              path=""
+              element={<Programs />}
+            />
+          </Route>
 
-          <Route path="/programs/cardio" element={<Cardio />} />
-          <Route path="/programs/pilates" element={<Pilates />} />
+          <Route
+            path="*" element={
+            <Navigate
+              to="/"
+              replace={true}
+            />}
+          />
         </Routes>
       </AuthProvider>
     </Router>
