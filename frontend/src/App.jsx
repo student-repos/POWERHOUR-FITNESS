@@ -5,6 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { SnackbarProvider } from 'notistack';
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Programs from "./components/Programs/Programs";
