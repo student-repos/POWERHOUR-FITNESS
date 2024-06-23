@@ -11,8 +11,8 @@ import crypto from "crypto";
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename);
 
-const { JWT_SECRET } = process.env;
-const { PORT } = process.env;
+const { JWT_SECRET, PORT, RESEND_API_KEY } = process.env;
+
 
 const signup = asyncHandler(async (req, res) => {
   try {
@@ -36,12 +36,13 @@ const signup = asyncHandler(async (req, res) => {
       role,
       email,
       password: hashedPassword,
+      picture: "default.jpg",
       role,
     });
 
     await newUser.save();
 
-  res.status(201).json({ message: "Signup successful. Please login." });
+  res.status(201).json({ message: "Signup successful. Please check your email for verification." });
 
 
     // Create a verification token
@@ -210,56 +211,63 @@ const getUserById = async (req, res) => {
   }
 };
 
-const uploadPictureById = async (req, res) => {
+const uploadPictureById = asyncHandler(async (req, res) => {
   try {
-    const {id} = req.params;
-    const { picture } = req.body;
-    const uploadPicture = await User.findByIdAndUpdate(id, {
-      picture: req.file.filename,
-    }, {new: true});
+    const { id } = req.params;
+    const filePath = req.file ? req.file.filename : null;
 
-    if (!uploadPicture) {
+    if (!filePath) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(id, {
+      picture: filePath,
+    }, { new: true });
+
+    if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json(uploadPicture);
+    res.json({ filePath });
   } catch (error) {
-    res.status(500).json({ error: "Error updating user", details: error.message });
+    res.status(500).json({ error: "Error updating profile picture", details: error.message });
   }
-} 
+});
 
-const updateUserById = async (req, res) => {
+
+
+const updateUserProfile = asyncHandler(async (req, res) => {
   try {
-    const { id } = req.params;
+    const { userId } = req.user;
     const {
       firstName,
       lastName,
-      age,
+      dateOfBirth,
       email,
       password,
       telephone,
-      role,
       address,
-      trainerType,
-      trainerDescription,
+      picture
     } = req.body;
-    // console.log(req.file.filename);
-    const updatedUser = await User.findByIdAndUpdate(
-      id,
 
+    let hashedPassword;
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
       {
         firstName,
         lastName,
-        age,
+        dateOfBirth,
         email,
-        password,
+        password: hashedPassword || undefined,
         telephone,
-        role,
         address,
-        trainerType,
-        trainerDescription,
+        picture
       },
-      { new: true }
+      { new: true, runValidators: true }
     );
 
     if (!updatedUser) {
@@ -270,7 +278,24 @@ const updateUserById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Error updating user", details: error.message });
   }
-};
+});
+
+// Handle file upload
+const uploadProfilePicture = asyncHandler(async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const filePath = req.file.path;
+    res.status(200).json({ filePath });
+  } catch (error) {
+    res.status(500).json({ error: "Error uploading file", details: error.message });
+  }
+});
+
+
+
 
 const getPictureById = async (req, res) => {
   try {
@@ -363,6 +388,7 @@ export {
   uploadPictureById,
   getAllUsers,
   getUserById,
-  updateUserById,
+  updateUserProfile,
+  uploadProfilePicture,
   deleteUserById,
 };

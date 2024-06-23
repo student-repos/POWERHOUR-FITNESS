@@ -13,7 +13,8 @@ import {
   uploadPictureById,
   getAllUsers,
   getUserById,
-  updateUserById,
+  updateUserProfile,
+  uploadProfilePicture,
 
   deleteUserById,
 } from "../controllers/userController.js";
@@ -53,7 +54,9 @@ router.patch("/:id", upload.single("picture"), uploadPictureById);
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 router.get("/picture/:id", getPictureById);
-router.put("/:id", updateUserById);
+router.put("/profile", isAuth, updateUserProfile);
+router.post("/upload", isAuth, upload.single('file'), uploadProfilePicture);
+
 router.delete("/:id", deleteUserById);
 
 export default router;

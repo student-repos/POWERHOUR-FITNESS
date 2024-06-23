@@ -1,0 +1,19 @@
+.update-profile-container {
+    padding: 20px;
+  }
+  
+  .back-to-dashboard {
+    margin-bottom: 20px;
+  }
+  
+  .back-to-dashboard a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 3rem; /* Increase the font size for better visibility */
+    font-weight: bold;
+  }
+  
+  .back-to-dashboard a:hover {
+    text-decoration: underline;
+  }
+  

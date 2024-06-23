@@ -14,6 +14,9 @@ import Login from "./components/JoinUs/Login/Login";
 import AdminDashboard from "./components/RoleBasedDashboard/AdminDashboard";
 import TrainerDashboard from "./components/RoleBasedDashboard/TrainerDashboard";
 import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
+import WriteReview from "./components/Review/WriteReview.jsx";
+import UpdateProfile from "./components/UpdateProfile.jsx/UpdateProfile.jsx";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./App.css";
@@ -70,6 +73,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/write-review" element={<ProtectedRoute role="member"><WriteReview /></ProtectedRoute>} />
+            <Route path="/write-review/:id" element={<ProtectedRoute role="member"><WriteReview /></ProtectedRoute>} />
+            <Route path="/update-personal-info" element={<ProtectedRoute role="member"><UpdateProfile /></ProtectedRoute>} />
             <Route path="/programs/yoga" element={<Yoga />} />
             <Route path="/programs/cardio" element={<Cardio />} />
             <Route path="/programs/pilates" element={<Pilates />} />

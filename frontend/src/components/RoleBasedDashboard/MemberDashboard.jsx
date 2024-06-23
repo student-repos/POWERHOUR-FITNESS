@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../../components/RoleBasedDashboard/MemberDashboard.css';
-import profileImage from '../../assets/profile.jpg';
+import defaultProfileImage from '../../assets/profile.jpg'; 
 
 const MemberDashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -58,7 +58,7 @@ const MemberDashboard = () => {
   }
 
   const handleMenuClick = (route) => {
-    window.location.href = route;
+    navigate(route);
   };
 
   const handleDeleteAccount = async () => {
@@ -79,6 +79,7 @@ const MemberDashboard = () => {
       setError(error.response ? error.response.data.error : 'Error deleting account');
     }
   };
+  const profilePictureUrl = user.picture ? `http://localhost:7500/uploads/${user.picture}` : defaultProfileImage;
 
   return (
     <div className="dashboard">
@@ -87,13 +88,13 @@ const MemberDashboard = () => {
         <div className="dropdown">
           <button className="dropdown-button" onClick={() => setMenuOpen(!menuOpen)}>
             {user.email} ({user.role})
-            <img src={profileImage} alt="Profile" className="profile-icon" />
+            <img src={user.picture ? `http://localhost:7500/${user.picture}` : profileImage} alt="Profile" className="profile-icon" />
           </button>
           {menuOpen && (
             <div className="dropdown-menu">
               <button onClick={() => handleMenuClick('/my-bookings')}>Book Program</button>
               <button onClick={() => handleMenuClick('/update-personal-info')}>Update Personal Info</button>
-              <button onClick={() => handleMenuClick('/write-a-review')}>Write a review</button>
+              <button onClick={() => handleMenuClick('/write-review')}>Write a review</button>
               <button onClick={handleDeleteAccount}>Delete Account</button>
               <hr />
               <button onClick={logout}>Log out</button>
