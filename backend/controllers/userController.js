@@ -211,24 +211,6 @@ const getUserById = async (req, res) => {
   }
 };
 
-
-const getAllReviews = async (req, res) => {
-  try {
-    const reviews = await Review.find().populate({
-      path: "userId",
-      select: ["firstName", "lastName", "picture"],
-    });
-    res.json(reviews);
-  } catch (error) {
-    res.status(500).json({
-      error: "An error occurred while fetching the reviews.",
-      details: error.message,
-    });
-  }
-};
-
-
-
 const uploadPictureById = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -406,7 +388,6 @@ export {
   uploadPictureById,
   getAllUsers,
   getUserById,
-  getAllReviews,
   updateUserProfile,
   uploadProfilePicture,
   deleteUserById,

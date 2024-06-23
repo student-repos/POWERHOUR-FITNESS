@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSnackbar } from 'notistack';
 import { useNavigate, useParams } from "react-router-dom";
-import ReactStars from "react-stars";
 import "./WriteReview.css";
 
 const WriteReview = () => {
@@ -35,10 +34,6 @@ const WriteReview = () => {
       fetchReview();
     }
   }, [id, enqueueSnackbar]);
-
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
