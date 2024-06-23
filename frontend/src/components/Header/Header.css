@@ -57,7 +57,7 @@
 }
 
 .join-us:hover {
-  border: 2px solid black;
+  border: 2px solid white;
 }
 .join-us {
   background-color: #ff00ff;
@@ -67,6 +67,7 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 1.2rem;
+  border: 2px solid black;
   
 }
 
