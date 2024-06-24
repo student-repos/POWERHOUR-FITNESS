@@ -3,9 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
+  Navigate
 } from "react-router-dom";
-import { SnackbarProvider } from 'notistack';
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Programs from "./components/Programs/Programs";
@@ -21,13 +20,9 @@ import Login from "./components/JoinUs/Login/Login";
 import AdminDashboard from "./components/RoleBasedDashboard/AdminDashboard";
 import TrainerDashboard from "./components/RoleBasedDashboard/TrainerDashboard";
 import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
-import WriteReview from "./components/Review/WriteReview.jsx";
-import UpdateProfile from "./components/UpdateProfile.jsx/UpdateProfile.jsx";
-
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./App.css";
-
 function App() {
   return (
     <Router>
@@ -79,15 +74,41 @@ function App() {
               path=":program/:course/:trainer/:id/*"
               element={<Course />}
             />
-            <Route path=":program/*" element={<Program />} />
-            <Route path="" element={<Programs />} />
+            <Route
+              path=":program/*"
+              element={<Program />}
+            />
+            <Route
+              path=""
+              element={<Programs />}
+            />
           </Route>
-
-          <Route path="*" element={<Navigate to="/" replace={true} />} />
+          <Route
+            path="*" element={
+            <Navigate
+              to="/"
+              replace={true}
+            />}
+          />
         </Routes>
       </AuthProvider>
     </Router>
   );
 }
-
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
