@@ -4,7 +4,7 @@ const userSchema = new Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    age: { type: Number },
+    dateOfBirth: { type: Date },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     telephone: { type: String },
@@ -18,6 +18,7 @@ const userSchema = new Schema(
     address: { type: String },
     trainerType: { type: String, enum: ["yoga", "pilates", "Cardio"] },
     trainerDescription: { type: String },
+    deleted: { type: Boolean, default: false }, 
   },
   { timestamps: true }
 );
@@ -25,7 +26,3 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 export default User;
-
-userSchema.add({
-  picture: { type: String },
-});

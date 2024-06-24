@@ -23,7 +23,6 @@ import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./App.css";
-
 function App() {
   return (
     <Router>
@@ -84,7 +83,6 @@ function App() {
               element={<Programs />}
             />
           </Route>
-
           <Route
             path="*" element={
             <Navigate
@@ -97,5 +95,20 @@ function App() {
     </Router>
   );
 }
-
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import '../../components/RoleBasedDashboard/MemberDashboard.css';
-import profileImage from '../../assets/profile.jpg';
+// import defaultProfileImage from '../../assets/profile.jpg'; 
 
 const MemberDashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -13,11 +14,12 @@ const MemberDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get('http://localhost:7500/api/dashboard/member', {
+        const response = await axios.get('http://localhost:7500/user/dashboard/member', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -32,7 +34,7 @@ const MemberDashboard = () => {
 
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:7500/api/bookings', {
+        const response = await axios.get('http://localhost:7500/booking', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -56,13 +58,13 @@ const MemberDashboard = () => {
   }
 
   const handleMenuClick = (route) => {
-    window.location.href = route;
+    navigate(route);
   };
 
   const handleDeleteAccount = async () => {
     console.log('Delete button clicked');
     try {
-      const url = `http://localhost:7500/user/api/${user._id}`;
+      const url = `http://localhost:7500/user/${user._id}`;
       console.log('Deleting account with URL:', url);
       const response = await axios.delete(url, {
         headers: {
@@ -71,11 +73,13 @@ const MemberDashboard = () => {
       });
       console.log('Account deleted successfully', response.data);
       logout();
+      navigate('/'); 
     } catch (error) {
       console.error('Error deleting account', error.response ? error.response.data : error.message);
       setError(error.response ? error.response.data.error : 'Error deleting account');
     }
   };
+  // const profilePictureUrl = user.picture ? `http://localhost:7500/uploads/${user.picture}` : defaultProfileImage;
 
   return (
     <div className="dashboard">
@@ -84,13 +88,13 @@ const MemberDashboard = () => {
         <div className="dropdown">
           <button className="dropdown-button" onClick={() => setMenuOpen(!menuOpen)}>
             {user.email} ({user.role})
-            <img src={profileImage} alt="Profile" className="profile-icon" />
+            <img src={user.picture ? `http://localhost:7500/${user.picture}` : profileImage} alt="Profile" className="profile-icon" />
           </button>
           {menuOpen && (
             <div className="dropdown-menu">
               <button onClick={() => handleMenuClick('/my-bookings')}>Book Program</button>
               <button onClick={() => handleMenuClick('/update-personal-info')}>Update Personal Info</button>
-              <button onClick={() => handleMenuClick('/write-a-review')}>Write a review</button>
+              <button onClick={() => handleMenuClick('/write-review')}>Write a review</button>
               <button onClick={handleDeleteAccount}>Delete Account</button>
               <hr />
               <button onClick={logout}>Log out</button>
@@ -111,8 +115,8 @@ const MemberDashboard = () => {
           )}
         </ul>
         <div>
-          <h3>Completed Classes</h3>
-          <p>{dashboardData.completedClasses}</p>
+          {/* <h3>Completed Classes</h3>
+          <p>{dashboardData.completedClasses}</p> */}
         </div>
       </div>
       <div className="bookings">

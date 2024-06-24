@@ -24,6 +24,7 @@
   flex-direction: column;
   align-items: flex-start;
   color: #fff;
+  padding: 3rem;
 }
 
 .hero-text {
@@ -64,6 +65,8 @@ line-height: 1.5;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 0.4rem;
+  font-size: 1.2rem;
 }
 
 .hero-stats {
@@ -72,8 +75,29 @@ line-height: 1.5;
   width: 100%;
   font-size: 1.2rem;
   margin-top: 2rem;
+  margin-left: 0.4rem;
 }
 
 .hero-stats div {
   margin-right: 2rem;
+}
+
+
+@media (max-width: 1024px) {
+  .hero-content {
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-stats {
+    font-size: 1rem;
+  }
 }

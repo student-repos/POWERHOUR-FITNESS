@@ -80,7 +80,7 @@ function Testimonials() {
         <div className="review-display">
           <div className="review-container">
             <div className="img-container">
-              {currentReview.userId && (
+              {currentReview.userId && currentReview.userId._id ? (
                 <img
                   src={`http://localhost:7500/user/picture/${currentReview.userId._id}`} 
                   alt={`${currentReview.userId.firstName} ${currentReview.userId.lastName}`}
@@ -89,11 +89,16 @@ function Testimonials() {
                     e.target.src = 'fallback-image-url.jpg'; // Optional fallback image
                   }}
                 />
+              ) : (
+                <img
+                  src='fallback-image-url.jpg'
+                  alt='Default User'
+                />
               )}
             </div>
             <div className="review-details">
               <p className="review-name">
-                {`${currentReview.userId.firstName} ${currentReview.userId.lastName}`}
+                {currentReview.userId ? `${currentReview.userId.firstName} ${currentReview.userId.lastName}` : 'Anonymous'}
               </p>
               <div className="stars">
                 {[...Array(currentReview.rating || 0)].map((_, index) => (

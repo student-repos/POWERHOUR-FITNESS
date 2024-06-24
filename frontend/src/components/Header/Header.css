@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 4.5rem;
   background-color: #ffccff;
   z-index: 1000;
 }
@@ -57,7 +57,7 @@
 }
 
 .join-us:hover {
-  border: 2px solid black;
+  border: 2px solid white;
 }
 .join-us {
   background-color: #ff00ff;
@@ -67,6 +67,7 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 1.2rem;
+  border: 2px solid black;
   
 }
 
@@ -78,6 +79,59 @@
   cursor: pointer;
 }
 
+@media (max-width: 1024px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #ffccff;
+    width: 100%;
+    padding: -0rem;
+    margin-top: 1rem
+    /* border-top:1px solid #000; */
+    ;
+  }
+
+
+  .header {
+    padding: 1rem 3rem;
+  }
+  .nav.open {
+    display: flex;
+  }
+
+  .logo-box {
+    height: 35px;
+    width: 35px;
+    margin-top: -1rem;
+    margin-bottom: -0.4rem;
+    
+  }
+.logo {
+    height: 25px;
+  }
+  .logo-text {
+    font-size: 0.5rem;
+    padding-bottom: 2rem;
+  }
+  
+
+  .nav a {
+    margin: 1rem 3rem;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  }
+
+
+
+
+
 @media (max-width: 768px) {
   .nav {
     display: none;
@@ -88,6 +142,8 @@
     background-color: #ffccff;
     width: 100%;
     padding: 1rem;
+    padding: -0rem;
+    margin-top: 1rem
     /* border-top:1px solid #000; */
     ;
   }

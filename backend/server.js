@@ -11,6 +11,8 @@ import userRouter from "./routes/userRouter.js";
 import trainerRouter from "./routes/trainerRouter.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 
 
 const app = express();
@@ -21,6 +23,12 @@ app.use(express.json());
 app.use(cookieParser());
 await connectDB();
 
+
+// Define __dirname for ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 app.use("/user", userRouter);
 app.use("/review", reviewRouter);
 app.use("/offer", offerRouter);
@@ -30,6 +38,8 @@ app.use("/contact", contactRouter);
 app.use("/booking", bookingRouter);
 app.use("/trainer", trainerRouter);
 
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(PORT, () =>
   console.log(
