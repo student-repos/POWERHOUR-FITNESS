@@ -71,6 +71,9 @@ const WriteReview = () => {
 
   return (
     <div className="write-review-container">
+      <div className="back-to-dashboard">
+        <Link to="/dashboard/member">{"<"}</Link>
+      </div>
       <h2>{id ? "Update Review" : "Write a Review"}</h2>
       <form onSubmit={handleSubmit}>
         <label>

@@ -71,7 +71,7 @@ const UpdateProfile = () => {
         }
       });
 
-      // Update user context
+   
       setUser(response.data);
 
       enqueueSnackbar('Profile updated successfully!', { variant: 'success' });
