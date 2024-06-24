@@ -7,7 +7,7 @@ import { FilePond, registerPlugin } from 'react-filepond';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import './UpdateProfile.css'; // Assuming you have some basic styles
+import './UpdateProfile.css';
 
 registerPlugin(FilePondPluginImagePreview);
 
@@ -88,9 +88,9 @@ const UpdateProfile = () => {
         <Link to="/dashboard/member">{"<"}</Link>
       </div>
       <h2>Update Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Profile Picture:
+      <form onSubmit={handleSubmit} className="update-profile-form">
+        <div className="form-group">
+          <label>Profile Picture:</label>
           <FilePond
             files={files}
             onupdatefiles={setFiles}
@@ -98,38 +98,39 @@ const UpdateProfile = () => {
             allowImagePreview={true}
             maxFiles={1}
             name="file"
-            labelIdle='Drag & Drop your picture or <span class="filepond--label-action">Browse</span>'
+            labelIdle=' <span class="filepond--label-action">Browse</span>'
+            className="filepond-circle"
           />
-        </label>
-        <label>
-          First Name:
+        </div>
+        <div className="form-group">
+          <label>First Name:</label>
           <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
-        </label>
-        <label>
-          Last Name:
+        </div>
+        <div className="form-group">
+          <label>Last Name:</label>
           <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
-        </label>
-        <label>
-          Date of Birth:
+        </div>
+        <div className="form-group">
+          <label>Date of Birth:</label>
           <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} />
-        </label>
-        <label>
-          Email:
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
           <input type="email" name="email" value={formData.email} onChange={handleChange} />
-        </label>
-        <label>
-          Password:
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
           <input type="password" name="password" value={formData.password} onChange={handleChange} />
-        </label>
-        <label>
-          Telephone:
+        </div>
+        <div className="form-group">
+          <label>Telephone:</label>
           <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} />
-        </label>
-        <label>
-          Address:
+        </div>
+        <div className="form-group">
+          <label>Address:</label>
           <input type="text" name="address" value={formData.address} onChange={handleChange} />
-        </label>
-        <button type="submit">Update Profile</button>
+        </div>
+        <button type="submit" className="update-button">Update Profile</button>
       </form>
     </div>
   );

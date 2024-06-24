@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../../components/RoleBasedDashboard/MemberDashboard.css';
-import defaultProfileImage from '../../assets/profile.jpg'; 
+// import defaultProfileImage from '../../assets/profile.jpg'; 
 
 const MemberDashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -79,7 +79,7 @@ const MemberDashboard = () => {
       setError(error.response ? error.response.data.error : 'Error deleting account');
     }
   };
-  const profilePictureUrl = user.picture ? `http://localhost:7500/uploads/${user.picture}` : defaultProfileImage;
+  // const profilePictureUrl = user.picture ? `http://localhost:7500/uploads/${user.picture}` : defaultProfileImage;
 
   return (
     <div className="dashboard">
@@ -115,8 +115,8 @@ const MemberDashboard = () => {
           )}
         </ul>
         <div>
-          <h3>Completed Classes</h3>
-          <p>{dashboardData.completedClasses}</p>
+          {/* <h3>Completed Classes</h3>
+          <p>{dashboardData.completedClasses}</p> */}
         </div>
       </div>
       <div className="bookings">

@@ -1,19 +1,83 @@
 .update-profile-container {
-    padding: 20px;
-  }
-  
-  .back-to-dashboard {
-    margin-bottom: 20px;
-  }
-  
-  .back-to-dashboard a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 3rem; /* Increase the font size for better visibility */
-    font-weight: bold;
-  }
-  
-  .back-to-dashboard a:hover {
-    text-decoration: underline;
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.back-to-dashboard {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-to-dashboard a {
+  font-size: 24px;
+  color: #333;
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+.filepond--image-preview-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.filepond--root {
+  width: 150px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border-radius: 20%;
+}
+
+.filepond--drop-label {
+  color: #4c4e53;
+}
+
+.filepond--label-action {
+  text-decoration: underline;
+}
+
