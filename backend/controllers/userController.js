@@ -34,6 +34,8 @@ const signup = asyncHandler(async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      picture: "default.jpg",
+
     });
 
     await newUser.save();

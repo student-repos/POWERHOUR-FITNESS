@@ -1,6 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import { SnackbarProvider } from 'notistack';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { SnackbarProvider } from "notistack";
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Programs from "./components/Programs/Programs";
@@ -16,6 +21,11 @@ import Login from "./components/JoinUs/Login/Login";
 import AdminDashboard from "./components/RoleBasedDashboard/AdminDashboard";
 import TrainerDashboard from "./components/RoleBasedDashboard/TrainerDashboard";
 import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
+import WriteReview from "./components/Review/WriteReview.jsx";
+import UpdateProfilePic from "./components/UpdateProfilePic/UpdateProfilePic.jsx";
+import MyBookings from "./components/MyBookings/MyBookings.jsx";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile.jsx";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 import WriteReview from "./components/Review/WriteReview";
@@ -69,6 +79,22 @@ function App() {
               }
             />
             <Route
+              path="/my-bookings"
+              element={
+                <ProtectedRoute role="member">
+                  <MyBookings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/update-profile-pic"
+              element={
+                <ProtectedRoute role="member">
+                  <UpdateProfilePic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/update-profile"
               element={
                 <ProtectedRoute role="member">
@@ -76,8 +102,22 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/write-review" element={<ProtectedRoute role="member"><WriteReview /></ProtectedRoute>} />
-            <Route path="/write-review/:id" element={<ProtectedRoute role="member"><WriteReview /></ProtectedRoute>} />
+            <Route
+              path="/write-review"
+              element={
+                <ProtectedRoute role="member">
+                  <WriteReview />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/write-review/:id"
+              element={
+                <ProtectedRoute role="member">
+                  <WriteReview />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/programs">
               <Route
                 path=":program/:course/:trainer/:id/*"
