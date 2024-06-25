@@ -17,6 +17,8 @@ import AdminDashboard from "./components/RoleBasedDashboard/AdminDashboard";
 import TrainerDashboard from "./components/RoleBasedDashboard/TrainerDashboard";
 import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
+import WriteReview from "./components/Review/WriteReview";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./App.css";
 function App() {
