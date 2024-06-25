@@ -261,6 +261,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       password,
       telephone,
       address,
+      picture,
       trainerType,
       trainerDescription,
     } = req.body;
@@ -280,6 +281,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         password: hashedPassword || undefined,
         telephone,
         address,
+        picture,  
         trainerType,
         trainerDescription,
       },
