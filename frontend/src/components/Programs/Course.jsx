@@ -6,13 +6,13 @@ import "./Course.css";
 
 // Import trainer images
 import celinaOImage from "../../assets/celina_o.jpg";
-import annaVImage from "../../assets/anna_v.jpg";
-import casseyHImage from "../../assets/cassey_h.jpg";
+import markSImage from "../../assets/mark_s.jpg";
+
 
 const trainerImages = {
   celina_o: celinaOImage,
-  anna_v: annaVImage,
-  cassey_h: casseyHImage
+  mark_s: markSImage
+  
 };
 
 function Course() {

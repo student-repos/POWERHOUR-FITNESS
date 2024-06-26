@@ -1,6 +1,6 @@
 [
   {
-    "trainerName": "Celina O.",
+    "trainerName": "Celina",
     "shortName": "celina_o",
     "classes": [
       {
@@ -33,8 +33,8 @@
     ]
   },
   {
-    "trainerName": "Cassey H.",
-    "shortName": "cassey_h",
+    "trainerName": "Mark",
+    "shortName": "mark_s",
     "classes": [
       {
         "className": "All Year",
@@ -62,39 +62,6 @@
         "duration": "60 minutes",
         "capacity": 20,
         "description": "Soluta doloremque perspiciatis voluptates minima quos sint magnam expedita, corrupti porro omnis labore recusandae. Maiores quae tempora, voluptatem velit eos modi consequatur? Ut molestiae id esse vero nihil similique possimus. Impedit cumque voluptatem officia perspiciatis, velit non exercitationem facere iure."
-      }
-    ]
-  },
-  {
-    "trainerName": "Anna V.",
-    "shortName": "anna_v",
-    "classes": [
-      {
-        "className": "All Year",
-        "startDate": 1704067200000,
-        "endDate": 1735603200000,
-        "startTime": "9:00",
-        "duration": "90 minutes",
-        "capacity": 20,
-        "description": "Corporis alias obcaecati hic ex dolorum iure totam, sed voluptates atque eum modi consectetur quisquam rerum porro expedita animi officiis quae perspiciatis iusto asperiores provident earum. Laudantium voluptatem cumque et iure, iste enim at eum sint blanditiis aut nobis accusamus."
-      },
-      {
-        "className": "June",
-        "startDate": 1717200000000,
-        "endDate": 1719705600000,
-        "startTime": "11:00",
-        "duration": "90 minutes",
-        "capacity": 20,
-        "description": "Veniam tenetur praesentium rerum soluta, numquam earum quam accusantium voluptates nihil, autem dicta quod, perspiciatis natus explicabo nesciunt illo officiis ut reiciendis quo esse obcaecati consequuntur pariatur! Ab suscipit, autem eos expedita nulla repellendus quidem corporis. Atque adipisci itaque neque."
-      },
-      {
-        "className": "July",
-        "startDate": 1719792000000,
-        "endDate": 1722384000000,
-        "startTime": "13:00",
-        "duration": "90 minutes",
-        "capacity": 20,
-        "description": "Ipsum optio voluptates, tenetur nostrum totam, assumenda deleniti, mollitia facilis velit impedit sequi. Nisi repellat, ducimus earum ipsum inventore animi? Vero, placeat iste ex doloribus doloremque quia perspiciatis quo eligendi saepe similique minima, eos nulla fuga unde nostrum! Tempore, facere."
       }
     ]
   }
