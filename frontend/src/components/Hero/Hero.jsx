@@ -30,12 +30,12 @@ function Hero() {
               EXPERT TRAINERS
             </div>
             <div>
-              <strong>+48</strong>
+              <strong>+39</strong>
               <br />
               MEMBERS JOINED
             </div>
             <div>
-              <strong>+3</strong>
+              <strong>+12</strong>
               <br />
               FITNESS PROGRAMS
             </div>
