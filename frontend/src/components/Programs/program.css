@@ -1,22 +1,68 @@
-.trainer-info {
+.program-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
 
+.program-container button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.program-container button:hover {
+  background-color: #45a049;
+}
+
+.trainer-info {
+  margin-bottom: 40px;
+}
+
+.trainer-info h4 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .trainer-row {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 5rem;
-border: 1px solid red;}
-
-.cours-card{
-  border: 1px solid red;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-img {
-    
+.cours-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  text-align: center;
 }
 
-h3{
-    text-align: center;
+.cours-card:hover {
+  transform: translateY(-10px);
+}
+
+.cours-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.cours-card img {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.cours-card p {
+  margin: 5px 0;
+  color: #666;
 }

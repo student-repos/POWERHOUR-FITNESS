@@ -1,8 +1,10 @@
 [
-  { "trainerName": "Hassan M.",
-    "shortName": "hassan_m",
+  {
+    "trainerName": "Celina O.",
+    "shortName": "celina_o",
     "classes": [
-      { "className": "All Year",
+      {
+        "className": "All Year",
         "startDate": 1704067200000,
         "endDate": 1735603200000,
         "startTime": "9:00",
@@ -10,7 +12,8 @@
         "capacity": 20,
         "description": "Qui cumque modi praesentium ad necessitatibus aperiam? Officiis illum expedita itaque accusantium ut tempora distinctio temporibus earum saepe? Cum nulla, magnam eos ullam reiciendis provident, voluptatum error debitis repellat inventore nisi corrupti dignissimos quia ab suscipit nihil labore, quaerat repudiandae!"
       },
-      { "className": "June",
+      {
+        "className": "June",
         "startDate": 1717200000000,
         "endDate": 1719705600000,
         "startTime": "10:00",
@@ -18,20 +21,23 @@
         "capacity": 20,
         "description": "Beatae magni placeat alias aut ipsa aspernatur perspiciatis, itaque corporis quos suscipit quod quidem porro accusantium ipsam culpa non odio neque. Atque natus, alias sunt numquam sequi veniam, soluta odio non quam fuga praesentium quos voluptates! Commodi reiciendis harum id."
       },
-      { "className": "July",
+      {
+        "className": "July",
         "startDate": 1719792000000,
         "endDate": 1722384000000,
         "startTime": "11:30",
         "duration": "55 minutes",
         "capacity": 20,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In reiciendis adipisci repellat, possimus laboriosam consectetur unde fuga aperiam nobis quos vitae laudantium accusantium doloremque neque atque, dicta facere? Accusantium doloremque ex a, placeat numquam vero reprehenderit iusto hic ratione veniam"
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In reiciendis adipisci repellat, possimus laboriosam consectetur unde fuga aperiam nobis quos vitae laudantium accusantium doloremque neque atque, dicta facere? Accusantium doloremque ex a, placeat numquam vero reprehenderit iusto hic ratione veniam."
       }
     ]
   },
-  { "trainerName": "Godwin O.",
-    "shortName": "godwin_o",
+  {
+    "trainerName": "Cassey H.",
+    "shortName": "cassey_h",
     "classes": [
-      { "className": "All Year",
+      {
+        "className": "All Year",
         "startDate": 1704067200000,
         "endDate": 1735603200000,
         "startTime": "9:00",
@@ -39,7 +45,8 @@
         "capacity": 20,
         "description": "In, blanditiis nisi? Quaerat libero dicta quas corporis quam explicabo amet odit mollitia vitae temporibus, recusandae necessitatibus harum ipsam iusto dolores suscipit placeat tenetur cupiditate eveniet laboriosam accusamus! Impedit voluptates fuga enim expedita quibusdam quod vero, perferendis fugit ab eum!"
       },
-      { "className": "June",
+      {
+        "className": "June",
         "startDate": 1717200000000,
         "endDate": 1719705600000,
         "startTime": "10:05",
@@ -47,7 +54,8 @@
         "capacity": 20,
         "description": "Quaerat alias molestiae repellat similique. Ipsum iusto cum fuga, voluptas earum sed recusandae illum! Voluptate sunt, numquam, natus fugiat pariatur repudiandae amet facilis commodi cumque dignissimos explicabo porro maiores harum dolor ipsa voluptas assumenda non sapiente aut at illum. Nesciunt!"
       },
-      { "className": "July",
+      {
+        "className": "July",
         "startDate": 1719792000000,
         "endDate": 1722384000000,
         "startTime": "11:10",
@@ -57,10 +65,12 @@
       }
     ]
   },
-  { "trainerName": "Dany M.",
-    "shortName": "dany_m",
+  {
+    "trainerName": "Anna V.",
+    "shortName": "anna_v",
     "classes": [
-      { "className": "All Year",
+      {
+        "className": "All Year",
         "startDate": 1704067200000,
         "endDate": 1735603200000,
         "startTime": "9:00",
@@ -68,7 +78,8 @@
         "capacity": 20,
         "description": "Corporis alias obcaecati hic ex dolorum iure totam, sed voluptates atque eum modi consectetur quisquam rerum porro expedita animi officiis quae perspiciatis iusto asperiores provident earum. Laudantium voluptatem cumque et iure, iste enim at eum sint blanditiis aut nobis accusamus."
       },
-      { "className": "June",
+      {
+        "className": "June",
         "startDate": 1717200000000,
         "endDate": 1719705600000,
         "startTime": "11:00",
@@ -76,7 +87,8 @@
         "capacity": 20,
         "description": "Veniam tenetur praesentium rerum soluta, numquam earum quam accusantium voluptates nihil, autem dicta quod, perspiciatis natus explicabo nesciunt illo officiis ut reiciendis quo esse obcaecati consequuntur pariatur! Ab suscipit, autem eos expedita nulla repellendus quidem corporis. Atque adipisci itaque neque."
       },
-      { "className": "July",
+      {
+        "className": "July",
         "startDate": 1719792000000,
         "endDate": 1722384000000,
         "startTime": "13:00",
