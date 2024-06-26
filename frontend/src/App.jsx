@@ -117,6 +117,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            
             <Route path="/programs">
               <Route
                 path=":program/:course/:trainer/:id/*"
