@@ -4,8 +4,8 @@ import "./program.css";
 import { treatDate } from "./treatDate";
 
 import yogaImage from "../../assets/yoga_june.jpeg";
-import cardioImage from "../../assets/cardio.jpeg";
-import pilatesImage from "../../assets/pilates.jpeg";
+import cardioImage from "../../assets/cardio_year.webp";
+import pilatesImage from "../../assets/pilates_year.jpeg";
 import Logo from "../../assets/logo.png";
 
 const images = {

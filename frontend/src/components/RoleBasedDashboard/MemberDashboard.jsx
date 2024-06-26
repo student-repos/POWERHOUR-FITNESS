@@ -105,7 +105,7 @@ const MemberDashboard = () => {
           </button>
           {menuOpen && (
             <div className="dropdown-menu">
-              <button onClick={() => handleMenuClick("/my-bookings")}>
+              <button onClick={() => handleMenuClick("/manage-bookings")}>
                 My Bookings
               </button>
               <button onClick={() => handleMenuClick("/update-profile-pic")}>

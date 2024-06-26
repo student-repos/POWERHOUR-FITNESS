@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { treatDate } from "./treatDate";
 import courses from "./courses.json";
 import "./Course.css";
@@ -8,15 +8,14 @@ import "./Course.css";
 import celinaOImage from "../../assets/celina_o.jpg";
 import markSImage from "../../assets/mark_s.jpg";
 
-
 const trainerImages = {
   celina_o: celinaOImage,
   mark_s: markSImage
-  
 };
 
 function Course() {
   const { program, course, trainer, id } = useParams();
+  const navigate = useNavigate();
   console.log({ program, course, trainer, id });
 
   const trainerData = courses.find(data => data.shortName === trainer);
@@ -26,6 +25,10 @@ function Course() {
   const { startTime, duration, capacity, description } = classData;
 
   const trainerImage = trainerImages[trainer];
+
+  const handleBookNow = () => {
+    navigate("/signup"); // Navigate to the signup page when the button is clicked
+  };
 
   return (
     <>
@@ -50,7 +53,7 @@ function Course() {
           <p>Start Time: {startTime}</p>
           <p>Duration: {duration}</p>
           <p>Capacity: {capacity}</p>
-          <button>Book Now</button>
+          <button onClick={handleBookNow}>Book Now</button>
         </div>
       </div>
     </>

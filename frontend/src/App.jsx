@@ -22,8 +22,9 @@ import AdminDashboard from "./components/RoleBasedDashboard/AdminDashboard";
 import TrainerDashboard from "./components/RoleBasedDashboard/TrainerDashboard";
 import MemberDashboard from "./components/RoleBasedDashboard/MemberDashboard";
 import UpdateProfilePic from "./components/UpdateProfilePic/UpdateProfilePic.jsx";
-import MyBookings from "./components/MyBookings/MyBookings.jsx";
-
+import ManageBookings from "./components/Managebookings/ManageBookings.jsx";
+import BookProgram from "./components/Managebookings/BookProgram.jsx";
+import UpdateBooking from "./components/Managebookings/UpdateBookings.jsx";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
@@ -78,10 +79,10 @@ function App() {
               }
             />
             <Route
-              path="/my-bookings"
+              path="/manage-bookings"
               element={
                 <ProtectedRoute role="member">
-                  <MyBookings />
+                  <ManageBookings />
                 </ProtectedRoute>
               }
             />
@@ -117,12 +118,44 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            
+            <Route
+              path="/book-program"
+              element={
+                <ProtectedRoute role="member">
+                  <BookProgram />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/programs">
               <Route
                 path=":program/:course/:trainer/:id/*"
                 element={<Course />}
               />
+              <Route
+                path="/manage-bookings"
+                element={
+                  <ProtectedRoute role="member">
+                    <ManageBookings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/book-program"
+                element={
+                  <ProtectedRoute role="member">
+                    <BookProgram />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/update-booking/:id"
+                element={
+                  <ProtectedRoute role="member">
+                    <UpdateBooking />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/programs"></Route>
               <Route path=":program/*" element={<Program />} />
               <Route path="" element={<Programs />} />
             </Route>
@@ -134,19 +167,3 @@ function App() {
   );
 }
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

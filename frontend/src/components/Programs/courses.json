@@ -13,20 +13,21 @@
         "description": " Celina O is a certified yoga trainer with over 15 years of experience, specializing in Hatha and Vinyasa yoga. Known for her calming presence and motivational style, she offers personalized sessions for all levels, focusing on balance, flexibility, and mindful breathing. Celina provides both in-person and online classes, making her expert guidance accessible to everyone. Join Celina to enhance your physical and mental well-being through yoga. "
         
       },
-      {
-        "className": "June",
-        "startDate": 1717200000000,
-        "endDate": 1719705600000,
-        "startTime": "10:00",
-        "duration": "55 minutes",
-        "capacity": 20,
-        "description": " Celina O is a certified yoga trainer with over 15 years of experience, specializing in Hatha and Vinyasa yoga. Known for her calming presence and motivational style, she offers personalized sessions for all levels, focusing on balance, flexibility, and mindful breathing. Celina provides both in-person and online classes, making her expert guidance accessible to everyone. Join Celina to enhance your physical and mental well-being through yoga. "
-      },
+     
       {
         "className": "July",
         "startDate": 1719792000000,
         "endDate": 1722384000000,
         "startTime": "11:30",
+        "duration": "55 minutes",
+        "capacity": 20,
+        "description": " Celina O is a certified yoga trainer with over 15 years of experience, specializing in Hatha and Vinyasa yoga. Known for her calming presence and motivational style, she offers personalized sessions for all levels, focusing on balance, flexibility, and mindful breathing. Celina provides both in-person and online classes, making her expert guidance accessible to everyone. Join Celina to enhance your physical and mental well-being through yoga. "
+      },
+       {
+        "className": "June",
+        "startDate": 1717200000000,
+        "endDate": 1719705600000,
+        "startTime": "10:00",
         "duration": "55 minutes",
         "capacity": 20,
         "description": " Celina O is a certified yoga trainer with over 15 years of experience, specializing in Hatha and Vinyasa yoga. Known for her calming presence and motivational style, she offers personalized sessions for all levels, focusing on balance, flexibility, and mindful breathing. Celina provides both in-person and online classes, making her expert guidance accessible to everyone. Join Celina to enhance your physical and mental well-being through yoga. "
@@ -46,20 +47,21 @@
         "capacity": 20,
         "description": " Mark is a certified yoga trainer with over a decade of experience. He specializes in Hatha and Vinyasa yoga, offering personalized sessions for all levels. Known for his calm and encouraging approach, Mark focuses on enhancing flexibility, balance, and inner peace. He offers both in-person and online classes, making his expertise widely accessible. Join Mark to transform your well-being through the practice of yoga. "
       },
-      {
-        "className": "June",
-        "startDate": 1717200000000,
-        "endDate": 1719705600000,
-        "startTime": "10:05",
-        "duration": "60 minutes",
-        "capacity": 20,
-        "description": " Mark is a certified yoga trainer with over a decade of experience. He specializes in Hatha and Vinyasa yoga, offering personalized sessions for all levels. Known for his calm and encouraging approach, Mark focuses on enhancing flexibility, balance, and inner peace. He offers both in-person and online classes, making his expertise widely accessible. Join Mark to transform your well-being through the practice of yoga. "
-      },
+
       {
         "className": "July",
         "startDate": 1719792000000,
         "endDate": 1722384000000,
         "startTime": "11:10",
+        "duration": "60 minutes",
+        "capacity": 20,
+        "description": " Mark is a certified yoga trainer with over a decade of experience. He specializes in Hatha and Vinyasa yoga, offering personalized sessions for all levels. Known for his calm and encouraging approach, Mark focuses on enhancing flexibility, balance, and inner peace. He offers both in-person and online classes, making his expertise widely accessible. Join Mark to transform your well-being through the practice of yoga. "
+      },    
+        {
+        "className": "June",
+        "startDate": 1717200000000,
+        "endDate": 1719705600000,
+        "startTime": "10:05",
         "duration": "60 minutes",
         "capacity": 20,
         "description": " Mark is a certified yoga trainer with over a decade of experience. He specializes in Hatha and Vinyasa yoga, offering personalized sessions for all levels. Known for his calm and encouraging approach, Mark focuses on enhancing flexibility, balance, and inner peace. He offers both in-person and online classes, making his expertise widely accessible. Join Mark to transform your well-being through the practice of yoga. "

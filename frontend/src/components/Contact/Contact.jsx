@@ -19,6 +19,12 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if all fields are filled
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.telephone || !formData.message) {
+      enqueueSnackbar('Please fill in all fields.', { variant: 'error' });
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:7500/contact", {
         method: "POST",
