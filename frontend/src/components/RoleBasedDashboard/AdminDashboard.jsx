@@ -1,117 +1,165 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import '../Dashboard/Dashboard.css';
-import axios from 'axios';
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import "../../components/RoleBasedDashboard/AdminDashboard.css";
+import defaultProfileImage from "../../assets/profile.jpg";
 
-function AdminDashboard() {
+const AdminDashboard = () => {
   const { user, logout } = useContext(AuthContext);
-  const [dashboardData, setDashboardData] = useState(null);
-  const [showAddMemberForm, setShowAddMemberForm] = useState(false);
-  const [newMember, setNewMember] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    role: 'member', // Default role for new members
-  });
+  const [programs, setPrograms] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [trainers, setTrainers] = useState([]);
+  const [error, setError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAdminData = async () => {
       try {
-        const response = await axios.get('/api/dashboard/admin', {
+        const programsResponse = await axios.get("http://localhost:7500/user/admin/programs", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         });
-        setDashboardData(response.data);
+        setPrograms(programsResponse.data);
+
+        const membersResponse = await axios.get("http://localhost:7500/user/admin/members", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setMembers(membersResponse.data);
+
+        const trainersResponse = await axios.get("http://localhost:7500/user/admin/trainers", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setTrainers(trainersResponse.data);
       } catch (error) {
-        console.error('Error fetching dashboard data', error);
+        console.error("Error fetching admin data", error);
+        setError("Error fetching admin data");
       }
     };
 
-    fetchData();
-  }, []);
+    if (user) {
+      fetchAdminData();
+    }
+  }, [user]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewMember({
-      ...newMember,
-      [name]: value,
-    });
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
+  const handleMenuClick = (route) => {
+    navigate(route);
   };
 
-  const handleAddMember = async (e) => {
-    e.preventDefault();
+  const handleDeleteAccount = async () => {
     try {
-      await axios.post('/api/addmember', newMember, {
+      const url = `http://localhost:7500/user/${user._id}`;
+      const response = await axios.delete(url, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
-      setShowAddMemberForm(false);
-      // Optionally refresh dashboard data or notify success
+      logout();
+      navigate("/");
     } catch (error) {
-      console.error('Error adding new member', error);
+      console.error(
+        "Error deleting account",
+        error.response ? error.response.data : error.message
+      );
+      setError(
+        error.response ? error.response.data.error : "Error deleting account"
+      );
     }
   };
 
-  if (!user || !dashboardData) {
-    return <div>Loading...</div>;
-  }
+  const profilePictureUrl = user.picture
+    ? `http://localhost:7500/uploads/${user.picture}`
+    : defaultProfileImage;
 
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h2>Welcome, {user.firstName}!</h2>
-        <p>Role: {user.role}</p>
-        <button onClick={logout} className="logout-button">Logout</button>
-      </div>
-      <div className="quick-stats">
-        <h3>Quick Stats</h3>
-        <p>Number of active members: {dashboardData.membersCount}</p>
-        <p>Number of trainers: {dashboardData.trainersCount}</p>
-        <p>Number of classes: {dashboardData.classesCount}</p>
-      </div>
-      <div className="actions">
-        <h3>Quick Actions</h3>
-        <button onClick={() => setShowAddMemberForm(true)}>Add Member</button>
-        <button>Create Program</button>
-      </div>
-      {showAddMemberForm && (
-        <div className="add-member-form">
-          <h3>Add New Member</h3>
-          <form onSubmit={handleAddMember}>
-            <label>
-              First Name:
-              <input type="text" name="firstName" value={newMember.firstName} onChange={handleChange} required />
-            </label>
-            <label>
-              Last Name:
-              <input type="text" name="lastName" value={newMember.lastName} onChange={handleChange} required />
-            </label>
-            <label>
-              Email:
-              <input type="email" name="email" value={newMember.email} onChange={handleChange} required />
-            </label>
-            <label>
-              Password:
-              <input type="password" name="password" value={newMember.password} onChange={handleChange} required />
-            </label>
-            <button type="submit">Add Member</button>
-            <button type="button" onClick={() => setShowAddMemberForm(false)}>Cancel</button>
-          </form>
+        <h2>
+          Welcome, <span className="user-firstname">{user.firstName}</span>!
+        </h2>
+        <div className="dropdown">
+          <button
+            className="dropdown-button"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {user.email} ({user.role})
+            <img src={profilePictureUrl} alt="Profile" className="profile-icon" />
+          </button>
+          {menuOpen && (
+            <div className="dropdown-menu">
+              <button onClick={() => handleMenuClick("/admin/programs")}>
+                Manage Programs
+              </button>
+              <button onClick={() => handleMenuClick("/admin/members")}>
+                Manage Members
+              </button>
+              <button onClick={() => handleMenuClick("/admin/trainers")}>
+                Manage Trainers
+              </button>
+              <button onClick={() => handleMenuClick("/update-profile-pic")}>
+                Update Profile Pic
+              </button>
+              <button onClick={() => handleMenuClick("/update-profile")}>
+                Update Profile
+              </button>
+              <button onClick={handleDeleteAccount}>Delete Account</button>
+              <hr />
+              <button onClick={logout}>Log out</button>
+            </div>
+          )}
         </div>
-      )}
-      <div className="menu-options">
-        <h3>Menu Options</h3>
+      </div>
+      <div className="programs">
+        <h3>Programs</h3>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <ul>
-          <li>Members: View, add, edit, delete</li>
-          <li>Trainers: View, add, edit, delete</li>
-          <li>Programs: View, add, edit, delete</li>
+          {programs.length > 0 ? (
+            programs.map((program, index) => (
+              <li key={index}>{program.title}</li>
+            ))
+          ) : (
+            <p>No programs found</p>
+          )}
+        </ul>
+      </div>
+      <div className="members">
+        <h3>Members</h3>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <ul>
+          {members.length > 0 ? (
+            members.map((member, index) => (
+              <li key={index}>{member.firstName} {member.lastName}</li>
+            ))
+          ) : (
+            <p>No members found</p>
+          )}
+        </ul>
+      </div>
+      <div className="trainers">
+        <h3>Trainers</h3>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <ul>
+          {trainers.length > 0 ? (
+            trainers.map((trainer, index) => (
+              <li key={index}>{trainer.firstName} {trainer.lastName}</li>
+            ))
+          ) : (
+            <p>No trainers found</p>
+          )}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default AdminDashboard;
