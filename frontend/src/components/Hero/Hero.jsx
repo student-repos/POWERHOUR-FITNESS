@@ -25,17 +25,17 @@ function Hero() {
           </div>
           <div className="hero-stats">
             <div>
-              <strong>+14</strong>
+              <strong>+6</strong>
               <br />
               EXPERT TRAINERS
             </div>
             <div>
-              <strong>+9</strong>
+              <strong>+48</strong>
               <br />
               MEMBERS JOINED
             </div>
             <div>
-              <strong>+30</strong>
+              <strong>+3</strong>
               <br />
               FITNESS PROGRAMS
             </div>
