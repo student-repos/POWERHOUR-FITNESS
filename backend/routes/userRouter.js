@@ -17,6 +17,12 @@ import {
   uploadProfilePicture,
 
   deleteUserById,
+  getAdminCourses,
+  getAdminMembers,
+  getAdminTrainers,
+  createAdminCourse,
+  updateAdminCourse,
+
 } from "../controllers/userController.js";
 import { isAuth } from "../middlewares/isAuth.js";
 import multer from "multer";
@@ -57,5 +63,12 @@ router.put("/profile/", isAuth, updateUserProfile);
 router.post("/upload", isAuth, upload.single('file'), uploadProfilePicture);
 
 router.delete("/:id", deleteUserById);
+
+// Admin specific routes
+router.get("/admin/courses", isAuth, getAdminCourses);
+router.get("/admin/members", isAuth, getAdminMembers);
+router.get("/admin/trainers", isAuth, getAdminTrainers);
+router.post("/admin/courses", isAuth, createAdminCourse);
+router.put("/admin/courses/:id", isAuth, updateAdminCourse);
 
 export default router;

@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+import Course from "../models/course.js"
 import asyncHandler from "../config/asyncHandler.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -379,6 +380,79 @@ const getMemberDashboardData = asyncHandler(async (req, res) => {
   });
 });
 
+
+const getAdminCourses = asyncHandler(async (req, res) => {
+  try {
+    const courses = await Course.find().populate('trainerId');
+    res.json(courses);
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    res.status(500).json({ error: "Error fetching courses", details: error.message });
+  }
+});
+
+const getAdminMembers = asyncHandler(async (req, res) => {
+  try {
+    const members = await User.find({ role: "member" });
+    res.json(members);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching members", details: error.message });
+  }
+});
+
+const getAdminTrainers = asyncHandler(async (req, res) => {
+  try {
+    const trainers = await User.find({ role: "trainer" });
+    res.json(trainers);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching trainers", details: error.message });
+  }
+});
+
+const createAdminCourse = asyncHandler(async (req, res) => {
+  try {
+    const { name, picture, description, trainerId, capacity, date, duration } = req.body;
+    const newCourse = await Course.create({
+      name,
+      picture,
+      description,
+      trainerId,
+      capacity,
+      date,
+      duration
+    });
+
+    res.status(201).json(newCourse);
+  } catch (error) {
+    res.status(500).json({ error: "Error creating course", details: error.message });
+  }
+});
+
+const updateAdminCourse = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, picture, description, trainerId, capacity, date, duration } = req.body;
+    const updatedCourse = await Course.findByIdAndUpdate(id, {
+      name,
+      picture,
+      description,
+      trainerId,
+      capacity,
+      date,
+      duration
+    }, { new: true });
+
+    if (!updatedCourse) {
+      return res.status(404).json({ error: "Course not found" });
+    }
+
+    res.json(updatedCourse);
+  } catch (error) {
+    res.status(500).json({ error: "Error updating course", details: error.message });
+  }
+});
+
+
 export {
   signup,
   verifyToken,
@@ -394,4 +468,9 @@ export {
   updateUserProfile,
   uploadProfilePicture,
   deleteUserById,
+  getAdminCourses,
+  getAdminMembers,
+  getAdminTrainers,
+  createAdminCourse,
+  updateAdminCourse,
 };

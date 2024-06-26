@@ -7,7 +7,7 @@ import defaultProfileImage from "../../assets/profile.jpg";
 
 const AdminDashboard = () => {
   const { user, logout } = useContext(AuthContext);
-  const [programs, setPrograms] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [members, setMembers] = useState([]);
   const [trainers, setTrainers] = useState([]);
   const [error, setError] = useState("");
@@ -17,12 +17,19 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const programsResponse = await axios.get("http://localhost:7500/user/admin/programs", {
+        const trainersResponse = await axios.get("http://localhost:7500/user/admin/trainers", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setPrograms(programsResponse.data);
+        setTrainers(trainersResponse.data);
+
+        const coursesResponse = await axios.get("http://localhost:7500/user/admin/courses", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setCourses(coursesResponse.data);
 
         const membersResponse = await axios.get("http://localhost:7500/user/admin/members", {
           headers: {
@@ -30,13 +37,6 @@ const AdminDashboard = () => {
           },
         });
         setMembers(membersResponse.data);
-
-        const trainersResponse = await axios.get("http://localhost:7500/user/admin/trainers", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setTrainers(trainersResponse.data);
       } catch (error) {
         console.error("Error fetching admin data", error);
         setError("Error fetching admin data");
@@ -97,8 +97,8 @@ const AdminDashboard = () => {
           </button>
           {menuOpen && (
             <div className="dropdown-menu">
-              <button onClick={() => handleMenuClick("/admin/programs")}>
-                Manage Programs
+              <button onClick={() => handleMenuClick("/admin/courses")}>
+                Manage Courses
               </button>
               <button onClick={() => handleMenuClick("/admin/members")}>
                 Manage Members
@@ -119,33 +119,7 @@ const AdminDashboard = () => {
           )}
         </div>
       </div>
-      <div className="programs">
-        <h3>Programs</h3>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <ul>
-          {programs.length > 0 ? (
-            programs.map((program, index) => (
-              <li key={index}>{program.title}</li>
-            ))
-          ) : (
-            <p>No programs found</p>
-          )}
-        </ul>
-      </div>
-      <div className="members">
-        <h3>Members</h3>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <ul>
-          {members.length > 0 ? (
-            members.map((member, index) => (
-              <li key={index}>{member.firstName} {member.lastName}</li>
-            ))
-          ) : (
-            <p>No members found</p>
-          )}
-        </ul>
-      </div>
-      <div className="trainers">
+      <div className="section">
         <h3>Trainers</h3>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <ul>
@@ -155,6 +129,32 @@ const AdminDashboard = () => {
             ))
           ) : (
             <p>No trainers found</p>
+          )}
+        </ul>
+      </div>
+      <div className="section">
+        <h3>Courses</h3>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <ul>
+          {courses.length > 0 ? (
+            courses.map((course, index) => (
+              <li key={index}>{course.name}</li>
+            ))
+          ) : (
+            <p>No courses found</p>
+          )}
+        </ul>
+      </div>
+      <div className="section">
+        <h3>Members</h3>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <ul>
+          {members.length > 0 ? (
+            members.map((member, index) => (
+              <li key={index}>{member.firstName} {member.lastName}</li>
+            ))
+          ) : (
+            <p>No members found</p>
           )}
         </ul>
       </div>
