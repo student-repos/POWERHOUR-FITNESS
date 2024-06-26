@@ -14,9 +14,9 @@ const images = {
 }
 
 
-// <<< ########### Get this data from the database ###########
+
 import courses from "./courses.json"
-// ########### Get this data from the database ########### >>>
+
 
 
 function Program() {
