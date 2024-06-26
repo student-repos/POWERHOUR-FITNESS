@@ -3,10 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import "./program.css";
 import { treatDate } from "./treatDate";
 
-import yogaImage from "../../assets/yoga.jpeg";
+import yogaImage from "../../assets/yoga_june.jpeg";
 import cardioImage from "../../assets/cardio.jpeg";
 import pilatesImage from "../../assets/pilates.jpeg";
-import Logo from "../../assets/logo.png"; // Assuming the logo image is located here
+import Logo from "../../assets/logo.png";
 
 const images = {
   yogaImage,

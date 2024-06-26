@@ -101,3 +101,26 @@
     border-bottom: none;
   }
   
+
+  .section {
+    margin-top: 20px;
+  }
+  
+  .section h3 {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .section li {
+    background-color: #fff;
+    margin-bottom: 3px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

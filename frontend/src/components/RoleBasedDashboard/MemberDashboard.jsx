@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "../../components/RoleBasedDashboard/MemberDashboard.css";
+import "../../components/RoleBasedDashboard/Dashboard.css";
 import defaultProfileImage from "../../assets/profile.jpg";
 
 const MemberDashboard = () => {
