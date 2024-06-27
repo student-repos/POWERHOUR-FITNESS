@@ -16,7 +16,7 @@ const trainerImages = {
 function Course() {
   const { program, course, trainer, id } = useParams();
   const navigate = useNavigate();
-  console.log({ program, course, trainer, id });
+  // console.log({ program, course, trainer, id });
 
   const trainerData = courses.find(data => data.shortName === trainer);
   const { trainerName, classes } = trainerData;

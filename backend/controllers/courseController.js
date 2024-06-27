@@ -10,6 +10,7 @@ const postNewCourse = async (req, res) => {
       capacity,
       date,
       duration,
+      type,
     } = req.body;
 
     const newCourse = new Course({
@@ -20,6 +21,7 @@ const postNewCourse = async (req, res) => {
       capacity,
       date,
       duration,
+      type,
     });
 
     await newCourse.save();
@@ -35,7 +37,7 @@ const getAllCourses = async (req, res) => {
   try {
     const courses = await Course.find().populate({
       path: "trainerId",
-      select: ["firstName", "lastName", "picture","trainerType"],});
+      select: ["firstName", "lastName", "picture"],});
 
       console.log("courses",courses)
     res.json(courses);
@@ -51,7 +53,7 @@ const getCourseById = async (req, res) => {
     const { id } = req.params;
     const course = await Course.findById(id).populate({
       path: "trainerId",
-      select: ["firstName", "lastName", "picture","trainerType"],});
+      select: ["firstName", "lastName", "picture"],});
 
     if (!course) {
       return res.status(404).json({ error: "Course not found" });
@@ -75,6 +77,7 @@ const updateCourseById = async (req, res) => {
       capacity,
       date,
       duration,
+      type,
     } = req.body;
 
     const updatedCourse = await Course.findByIdAndUpdate(
@@ -86,6 +89,7 @@ const updateCourseById = async (req, res) => {
         capacity,
         date,
         duration,
+        type,
       },
       { new: true }
     );
