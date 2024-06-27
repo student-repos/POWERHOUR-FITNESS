@@ -13,7 +13,7 @@ import {isTrainer} from "../middlewares/isTrainer.js";
 
 const router = Router();
 
-router.post("/",isAuth, isTrainer, postNewCourse);
+router.post("/", postNewCourse);
 router.get("/", getAllCourses);
 router.get("/:id", getCourseById);
 router.put("/:id", updateCourseById);
